@@ -1,0 +1,191 @@
+.section_header{
+
+    background-color: rgb(249, 245, 243) ;
+    width: 100%;
+    height: 80px;
+
+    border-radius: 10px;
+
+    display: grid;
+    grid-template-columns: 150px 1fr 150px 150px ;
+
+
+}
+
+
+/* //////////////////////////////////////////////////////////////////////////////////// */
+.div_forkify_logo {
+    background-color: rgba(255, 192, 203, 0);
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.img_forkify_logo{
+
+    width: 100px;
+}
+/* //////////////////////////////////////////////////////////////////////////////////// */
+
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////////// */
+.div_search_bar{
+    background-color: rgba(129, 111, 85, 0);
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    
+}
+.form_input_search_bar{
+
+    position: relative;
+
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.input_search_bar{
+    
+
+    width: calc(350px - 40px);
+    height: 40px;
+    
+    border: none;
+
+    padding-left: 40px;
+
+    border-radius: 20px;
+
+    outline: none;
+
+    font-family: gilroy;
+    letter-spacing: 1px;
+    color: rgb(162, 162, 162); 
+       
+}
+.btn_search{
+    
+    background-image: linear-gradient(to bottom right, #ffb25a, #ff7575);
+    border: none;
+
+    width: 150px;
+    height: 42px;
+
+    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 20px;
+
+    margin-left: -90px;
+
+    cursor: pointer;
+
+
+}
+.btn_search:hover {
+    background-image: linear-gradient(to bottom right, #ffac4e, #ff6969);
+}
+.btn_search:active{
+    background-image: linear-gradient(to bottom right, #ffb25a, #ff7575);
+}
+
+.img_search_icon{
+    width: 16px;
+    height: 16px;
+
+    display: inline;
+    margin-right: 15px;
+        
+}
+.text_search{
+    display: inline;  
+
+    font-family: gilroy;
+    font-size: 12px;   
+    color: rgba(255, 255, 255, 0.702);
+    letter-spacing: 1px;
+}
+/* //////////////////////////////////////////////////////////////////////////////////// */
+
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////////// */
+.div_add_recipes{
+    background-color: rgba(137, 43, 226, 0);
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: all ease 0.1s;
+}
+.div_add_recipes:hover{
+    background-color: rgb(231, 231, 231);
+}
+.img_add_recipe_icon{
+    width: 20px;
+    height: 20px;
+
+    display: inline;
+
+    margin-right: 6px;
+    
+}
+.text_add_recipe{
+    margin: 0px;
+    display: inline;
+
+    font-family: gilroy;
+    font-size: 12px;   
+    color: rgba(255, 255, 255, 0.702);
+    letter-spacing: 1px;
+    color:#000000;
+
+    margin-right: 30px;   
+    
+}
+
+
+/* //////////////////////////////////////////////////////////////////////////////////// */
+
+
+
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////////// */
+.div_add_bookmarks{
+    background-color: rgba(222, 184, 135, 0);
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+
+}
+.div_add_bookmarks:hover{
+    background-color: rgb(231, 231, 231);
+
+}
+/* //////////////////////////////////////////////////////////////////////////////////// */
