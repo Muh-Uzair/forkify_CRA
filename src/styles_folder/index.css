@@ -41,10 +41,10 @@ body {
 
     width: 1000px;
     height: 900px;
-    background-color: rgba(179, 179, 179, 0);
+    background-color: rgb(179, 179, 179);
 
     display: grid;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 93px 1fr;
 
 }
 
@@ -56,6 +56,10 @@ body {
 
 .section_left_right_both{
     background-color: #189173;
-    height: 100px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
+
+    border-radius: 8px;
+
+
 }
