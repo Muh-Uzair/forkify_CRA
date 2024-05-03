@@ -34,18 +34,24 @@ body {
 
 .main_box{
 
+    
+
     position: absolute;
     left: 50%;
-    top: 50%;
-    transform: translate(-50% , -50%);
+    transform: translate(-50%);
+
+    margin-top: 25px;
 
     width: 1000px;
     height: 900px;
-    background-color: rgb(179, 179, 179);
+    background-color: rgb(234, 234, 234);
 
     display: grid;
     grid-template-rows: 93px 1fr;
 
+    border-radius: 8px;
+
+    
 }
 
 
@@ -55,11 +61,16 @@ body {
 
 
 .section_left_right_both{
-    background-color: #189173;
+    background-color: #18917300;
     height: 100%;
     width: 100%;
 
     border-radius: 8px;
 
-
+    display: grid;
+    grid-template-columns: 350px 1fr ;
+    column-gap: 13px;
 }
+
+
+

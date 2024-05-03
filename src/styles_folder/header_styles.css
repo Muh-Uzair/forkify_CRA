@@ -91,13 +91,16 @@
 
     cursor: pointer;
 
+    transition: all ease 0.2s;
 
 }
 .btn_search:hover {
     background-image: linear-gradient(to bottom right, #ffac4e, #ff6969);
+    transform: translateX(2px);
 }
 .btn_search:active{
     background-image: linear-gradient(to bottom right, #ffb25a, #ff7575);
+    
 }
 
 .img_search_icon{
