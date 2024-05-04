@@ -82,8 +82,64 @@ export default function App() {
               
             </div>}
             {recipe_clicked && 
-            <>
-            </>
+            <div className="div_show_recipe_detials">
+
+              <div className="div_img_big_recipe">
+                <img className="img_big_recipe" src={recipe_object_to_show.image_url} alt="img" />
+              </div>
+
+
+              <div className="div_time_plus_serving_plus_minus">
+
+                <div className="div_time">
+                  <img className="clock_img" src="clock_icon.png" alt="img"/>
+                  <p className="text_time"><strong>75</strong> MINUTES</p>
+
+                </div>
+
+                <div className="div_servings">
+
+                  <img className="img_servings" src="servings_icon.png" alt="img" />
+
+                  <p className="text_servings"><strong>4</strong> SERVINGS</p>
+
+                  <button className="btn_plus">
+                    <img className="img_plus" src="plus_icon.png" alt="img"/>
+                  </button>
+
+                  <button className="btn_minus">
+                  <img className="img_minus" src="minus_icon.png" alt="img"/>
+                  </button>
+                  
+
+                </div>
+
+                <div className="div_btn_bookmark_right">
+
+                  <button className="btn_bookmark_right">
+                    <img className="img_bookmark_right" src="bookmark_icon_right_2.png" alt="img" />
+                  </button>
+
+                </div>
+
+              </div>
+
+
+
+              <div className="div_recipe_ingredients">
+                <p className="text_ingrients">RECIPE INGREDIENTS</p>
+              </div>
+
+              <div className="div_how_to_cook_it">
+
+                     <p className="text_how_to_cook_it">HOW TO COOK IT</p>
+                     <p className="text_carefully">This recipe was carefully designed and tested by All Recipes. Please check out<br/>directions at their website.</p>
+                     <button className="btn_directions">DIRECTIONS &rarr;</button>
+                
+              </div>
+
+
+            </div>
             }
 
           </section>
@@ -212,7 +268,7 @@ check_for_no_results , set_check_for_no_results ,
 
 
       <div className="div_add_bookmarks">
-        <img className="img_add_recipe_icon" src="add_book_mark_icon_4.png" alt="img"/> 
+        <img className="img_add_recipe_icon" src="add_book_mark_icon_5.png" alt="img"/> 
         <p className="text_add_recipe">BOOKMARKS</p>
       </div>
 

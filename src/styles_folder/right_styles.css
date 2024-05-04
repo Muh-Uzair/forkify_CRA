@@ -16,6 +16,266 @@
 
 
 /* /////////////////////////////////////////////////////////////////////////////////////// */
+.div_show_recipe_detials{
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 8px;
+
+    
+
+    background-color: rgba(101, 121, 165, 0);
+}
+
+/* __________________ */
+.div_img_big_recipe{
+    width: 100%;
+    height: 270px;
+
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    background-color: rgba(255, 161, 67, 0.818);
+
+    position: relative; 
+    overflow: hidden
+
+    
+}
+.img_big_recipe {
+
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+     opacity: 0.5;    
+}
+/* __________________ */
+
+
+/* __________________ */
+.div_time_plus_serving_plus_minus{
+    width: 100%;
+    height: 130px;
+
+    background-color: rgba(188, 160, 255, 0);
+
+    position: relative;
+
+}
+.div_time{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 60px;
+
+    display: flex;
+}
+.clock_img{
+    
+    width: 20px;
+    height: 20px;
+}
+.text_time{
+    margin: 0px;   
+    margin-left: 5px;
+
+    font-family: gilroy;
+    color: rgba(0, 0, 0, 0.609);
+}
+
+
+.div_servings{
+    
+
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 220px;
+
+    background-color: rgba(127, 255, 212, 0);
+    width: 170px;
+
+    display: flex;
+    align-items: center;
+}
+.img_servings{
+    width: 23px;
+    height: 23px;
+}
+.text_servings{
+    margin: 0px;
+    margin-left: 5px;
+
+    font-family: gilroy;
+    color: rgba(0, 0, 0, 0.609);
+
+    text-wrap: nowrap;
+}
+.btn_plus{
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    width: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    margin-left: 10px;
+
+}
+.btn_plus:active{
+    transform: translateY(1px);
+}
+.img_plus{
+    width: 20px;
+    height: 20px;
+}
+.btn_minus{
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    margin-left: -4px;
+    width: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+}
+.btn_minus:active{
+    transform: translateY(1px);
+}
+.img_minus{
+    width: 20px;
+    height: 20px;
+}
+
+.div_btn_bookmark_right{
+    position: absolute;
+    left: 500px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    
+}
+.btn_bookmark_right{
+    border: none;
+    background-image: linear-gradient(to bottom right, #ffb25a, #ff7575);
+
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.img_bookmark_right{
+    width: 20px;
+    height: 20px;
+}
+
+/* __________________ */
+
+
+/* __________________ */
+.div_recipe_ingredients{
+    width: 100%;
+    height: 340px;
+
+    background-color: rgb(242, 239, 238) ;
+
+    position: relative;
+}
+.text_ingrients{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:40px;
+
+    font-family: gotham ;
+    font-weight: bold;
+    font-size: 17px;
+    letter-spacing: 1px;
+    color:#ffb25a;  
+    margin: 0px;
+
+}
+
+/* __________________ */
+
+/* __________________ */
+.div_how_to_cook_it{
+    width: 99.8%;
+    height: 165px;
+
+    background-color: rgb(236, 236, 236);
+
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
+    position: relative;
+    border: 1px solid rgba(200, 200, 200, 0.492);
+
+}
+.text_how_to_cook_it{
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px;
+
+
+    font-family: gotham;
+    font-weight: bold;
+    font-size: 17px;
+    color: #ffb25a;
+    
+
+    margin: 0px;
+
+}
+.text_carefully{
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 520px;
+
+    top:60px ;
+
+    text-align: center;
+    margin: 0px;
+
+    font-size: 13px ;
+    font-family: gilroy ;
+    color: rgba(0, 0, 0, 0.527);
+    
+
+    
+}
+
+
+/* __________________ */
+
+
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////// */
+
+
+
+
+
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////// */
 .div_before_searching{
 
     position: absolute;
