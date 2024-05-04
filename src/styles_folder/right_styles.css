@@ -7,4 +7,38 @@
     border-radius: 8px;
 
 
+    position: relative; 
+
+
 }
+
+
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////// */
+.div_before_searching{
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 50px;
+    
+    
+
+
+    display: flex;
+    gap: 10px;
+}
+.img_smiley_face{
+    width: 35px; 
+    height: 35px;   
+}
+.text_start_searching{
+    margin: 0px;
+    font-family: gilroy;
+    letter-spacing: 0.5px;
+
+    color: rgb(92, 92, 92);
+    
+}
+/* /////////////////////////////////////////////////////////////////////////////////////// */

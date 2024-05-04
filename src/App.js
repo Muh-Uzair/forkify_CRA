@@ -17,6 +17,8 @@ export default function App() {
   const [is_loading , set_is_loading] = useState(false) ;
   const [page_num , set_page_num] = useState(1) ;
   const [check_for_no_results , set_check_for_no_results]= useState(false) ;
+  const [recipe_clicked , set_recipe_clicked] = useState(false) ;
+  const [recipe_object_to_show , set_recipe_object_to_show] = useState({}) ; 
 
 
 
@@ -60,11 +62,29 @@ export default function App() {
 
           check_for_no_results={check_for_no_results}
           set_check_for_no_results={set_check_for_no_results}
+
+          recipe_clicked={recipe_clicked}
+          set_recipe_clicked={set_recipe_clicked}
+
+          recipe_object_to_show={recipe_object_to_show}
+          set_recipe_object_to_show={set_recipe_object_to_show}
+
           ></LEFT_COMPONENT>
 
 
 
           <section className="section_right">
+
+            {!recipe_clicked && 
+            <div className="div_before_searching"> 
+              <img className="img_smiley_face" src="smiley_face.png" alt="img"/>
+              <p className="text_start_searching">Start by searching for a recipe or <br></br> an ingredient. Have fun!</p>
+              
+            </div>}
+            {recipe_clicked && 
+            <>
+            </>
+            }
 
           </section>
 
@@ -97,13 +117,15 @@ check_for_no_results , set_check_for_no_results ,
                     function handle_form_submit_search_btn_click(event_info_object) {
                       event_info_object.preventDefault() ;
 
+                      set_inputed_recipe_name("") 
+
                       if(check_for_same_search.current === inputed_recipe_name ) {
-                        set_inputed_recipe_name("")   
+                          
                         return ;
                       }
                       
                       check_for_same_search.current = inputed_recipe_name ; 
-                      check_for_no_results.current = false ;
+                      
                                     
                       fetch_recipe() 
                       
@@ -127,7 +149,6 @@ check_for_no_results , set_check_for_no_results ,
 
                         set_arr_of_recipes( arr_of_recipes => [{} ,...data.data.recipes ])
                         
-
                         set_is_loading(false)                        
                         
 
@@ -211,6 +232,8 @@ arr_of_recipes , set_arr_of_recipes ,
 is_loading , set_is_loading ,
 page_num , set_page_num ,
 check_for_no_results , set_check_for_no_results ,
+recipe_clicked , set_recipe_clicked ,
+recipe_object_to_show , set_recipe_object_to_show
 }) {
 
             
@@ -246,8 +269,24 @@ check_for_no_results , set_check_for_no_results ,
 
                             
                           }
+                          if(arr_of_recipes.length === 1 ) {
+                            set_check_for_no_results(true) ;
+                          }
+                          else if(arr_of_recipes.length > 1 ) {
+                            set_check_for_no_results(false) ;
+                          }
                         
-                    } , [arr_of_recipes , page_num])
+                    } , [arr_of_recipes , page_num , set_check_for_no_results])
+
+            //_________________________________________________________________________________
+                    function handle_recipe_click(event_info_object , val) {
+
+                      set_recipe_clicked(true) ;
+                      set_recipe_object_to_show(val) ;
+                      
+                    }
+                    
+              
 
 
 
@@ -259,11 +298,31 @@ check_for_no_results , set_check_for_no_results ,
 
         <div className="div_display_recipe">
 
-          {check_for_no_results.current ? <p>sorry</p> : is_loading === true ? <p className="text_loading">LOADING...</p> : 
-          <ul>
+        
+          {is_loading === true ? 
+          <p className="text_loading">LOADING...</p> 
+          : 
+          check_for_no_results ? 
+          <>
+            <p className="cross_sign">❌</p> <p className="text_sorry_msg">No results</p>             
+          </>        
+          : 
+          <ul className="ul_recipe_list">
             {arr_of_recipes_for_display.map( val => (
-              <li key={val.id}>
-                <p>{val.title}</p>
+              <li key={val.id} onClick={(e) => handle_recipe_click(e , val)}>
+
+                <div className="div_recipe_img">
+                  <img className="img_recipe" src={val.image_url} alt="img"/>
+                </div>
+
+                <div className="div_recipe_name_plus_channel">
+
+                     <p className="text_recipe_title">{val.title}</p>
+                     <p className="text_channel_name">{val.publisher}</p>
+
+                </div>
+
+                
               </li>
             ))}
           </ul>
