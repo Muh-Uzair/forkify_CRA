@@ -13,14 +13,19 @@ const API_KEY = `d84478c6-6132-4c64-b5fa-2427ec2eac58` ;
 export default function App() {
 
   
-  const [arr_of_recipes , set_arr_of_recipes] = useState([])
-  const [is_loading , set_is_loading] = useState(false) ;
-  const [page_num , set_page_num] = useState(1) ;
-  const [check_for_no_results , set_check_for_no_results]= useState(false) ;
-  const [recipe_clicked , set_recipe_clicked] = useState(false) ;
-  const [recipe_object_to_show , set_recipe_object_to_show] = useState({}) ; 
-  const [recipe_details , set_recipe_details] = useState({}) ;
-  const [is_loading_right , set_is_loading_right] = useState(false) ;
+        const [arr_of_recipes , set_arr_of_recipes] = useState([])
+        const [is_loading , set_is_loading] = useState(false) ;
+        const [page_num , set_page_num] = useState(1) ;
+        const [check_for_no_results , set_check_for_no_results]= useState(false) ;
+        const [recipe_clicked , set_recipe_clicked] = useState(false) ;
+        const [recipe_object_to_show , set_recipe_object_to_show] = useState({}) ; 
+        const [recipe_details , set_recipe_details] = useState({}) ;
+        const [is_loading_right , set_is_loading_right] = useState(false) ;
+
+
+        function book_mark_right_clicked(event_info_object) {
+          console.log(`h`)
+        }
 
 
 
@@ -128,7 +133,7 @@ export default function App() {
 
                 <div className="div_btn_bookmark_right">
 
-                  <button className="btn_bookmark_right">
+                  <button className="btn_bookmark_right" onClick={(e) => book_mark_right_clicked(e)}>
                     <img className="img_bookmark_right" src="bookmark_icon_right_2.png" alt="img" />
                   </button>
 
@@ -137,9 +142,37 @@ export default function App() {
               </div>
 
 
-
               <div className="div_recipe_ingredients">
+
                 <p className="text_ingrients">RECIPE INGREDIENTS</p>
+
+                <div></div>
+
+                <div className="div_all_recipe_ingredients">
+                  <ul>
+                    {recipe_details.ingredients.slice(0 , Math.trunc(recipe_details.ingredients.length)/2 )
+                    .map( (val, i) => (
+                      <li key={i}>
+                        <img className="img_tick_icon"  src="tick_icon_2.png" alt="img"/>
+                        <p className="text_recipe_ingredients_detailed">{val.description}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="div_all_recipe_ingredients">
+                  <ul>
+                    {recipe_details.ingredients.slice((Math.trunc(recipe_details.ingredients.length)/2) ,Math.trunc(recipe_details.ingredients.length)  )
+                    .map( (val, i) => (
+                      <li key={i}>
+                        <img className="img_tick_icon"  src="tick_icon_2.png" alt="img"/>
+                        <p className="text_recipe_ingredients_detailed">{val.quantity} {val.unit} {val.description}</p>
+                        
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
               </div>
 
               <div className="div_how_to_cook_it">
@@ -356,6 +389,8 @@ is_loading_right , set_is_loading_right,
 
             //_________________________________________________________________________________
                     function handle_recipe_click(event_info_object , val) {
+
+                      if(recipe_details.id === val.id) return ;
 
                       set_recipe_clicked(true) ;
                       set_recipe_object_to_show(val) ;

@@ -96,7 +96,7 @@
 }
 .btn_search:hover {
     background-image: linear-gradient(to bottom right, #ffac4e, #ff6969);
-    transform: translateX(2px);
+    
 }
 .btn_search:active{
     background-image: linear-gradient(to bottom right, #ffb25a, #ff7575);
@@ -109,7 +109,15 @@
 
     display: inline;
     margin-right: 15px;
-        
+    
+    transition: all ease 0.3s;
+}
+.btn_search:hover .img_search_icon{
+
+    width: 18px;
+    height: 18px;
+    
+
 }
 .text_search{
     display: inline;  
@@ -118,7 +126,13 @@
     font-size: 12px;   
     color: rgba(255, 255, 255, 0.702);
     letter-spacing: 1px;
+
+    transition: all ease 0.3s;
 }
+.btn_search:hover .text_search{
+    font-size: 14px;
+}
+
 /* //////////////////////////////////////////////////////////////////////////////////// */
 
 
