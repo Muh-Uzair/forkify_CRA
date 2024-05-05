@@ -21,11 +21,58 @@ export default function App() {
         const [recipe_object_to_show , set_recipe_object_to_show] = useState({}) ; 
         const [recipe_details , set_recipe_details] = useState({}) ;
         const [is_loading_right , set_is_loading_right] = useState(false) ;
+        
+        const [bookmarks_arr , set_bookmarks_arr] = useState(function() {
+          let val_from_local_storage = JSON.parse(localStorage.getItem("bookmarked_recipe_arr")) ;
+          if(!val_from_local_storage) {
+            val_from_local_storage=[] ;
+          }
+  
+          return val_from_local_storage
+        }) ;
+  
+
+        const [check_book_mark_right_clicked , set_check_book_mark_right_clicked] = useState(false) ;
+        
+
+        //__________________________________________________________________________________
+                function check_for_bookmarked_recipe_existance_function() {
+
+                  let flag = false ;
+
+                  for( let i = 0 ; i < bookmarks_arr.length ; i++) {
+                    if(bookmarks_arr[i] === recipe_details.id) {
+                      flag = true ;
+                    }
+                  }
+
+                  return flag ;
+                }
+        //__________________________________________________________________________________
+                function book_mark_right_clicked_function(event_info_object) {
+
+                  
+                  if(check_for_bookmarked_recipe_existance_function() === false) {
+                    // console.log(`not exist : so added`)
+                    set_bookmarks_arr(bookmarks_arr => [...bookmarks_arr , recipe_details.id])
+                    set_check_book_mark_right_clicked(true) ;
+                  }
+                  else if(check_for_bookmarked_recipe_existance_function() === true ) {
+                    // console.log(`exist : so removed`)
+                    set_bookmarks_arr(bookmarks_arr => bookmarks_arr.filter(val => val !== recipe_details.id))
+                    set_check_book_mark_right_clicked(false) ;
+                  }
+                
+                }
+        //__________________________________________________________________________________
+                useEffect(function() {
+
+                localStorage.setItem("bookmarked_recipe_arr" ,  JSON.stringify(bookmarks_arr)) ;
+                },[bookmarks_arr])
+        //__________________________________________________________________________________
+  
 
 
-        function book_mark_right_clicked(event_info_object) {
-          console.log(`h`)
-        }
 
 
 
@@ -82,6 +129,12 @@ export default function App() {
           is_loading_right={is_loading_right}
           set_is_loading_right={set_is_loading_right}
 
+          bookmarks_arr={bookmarks_arr}
+          set_bookmarks_arr={bookmarks_arr}
+
+          check_book_mark_right_clicked={check_book_mark_right_clicked}
+          set_check_book_mark_right_clicked={set_check_book_mark_right_clicked}
+
           ></LEFT_COMPONENT>
 
 
@@ -130,11 +183,16 @@ export default function App() {
                   
 
                 </div>
-
+                
                 <div className="div_btn_bookmark_right">
 
-                  <button className="btn_bookmark_right" onClick={(e) => book_mark_right_clicked(e)}>
-                    <img className="img_bookmark_right" src="bookmark_icon_right_2.png" alt="img" />
+                  <button className="btn_bookmark_right" onClick={(e) => book_mark_right_clicked_function(e)}>
+                      
+                      {check_book_mark_right_clicked ? 
+                       <img className="img_bookmark_right" src="bookmark_icon_right.png" alt="img" />
+                       :
+                       <img className="img_bookmark_right" src="bookmark_icon_right_2.png" alt="img" />
+                       }
                   </button>
 
                 </div>
@@ -342,6 +400,8 @@ recipe_clicked , set_recipe_clicked ,
 recipe_object_to_show , set_recipe_object_to_show ,
 recipe_details , set_recipe_details ,
 is_loading_right , set_is_loading_right,
+bookmarks_arr , set_bookmarks_arr ,
+check_book_mark_right_clicked , set_check_book_mark_right_clicked ,
 }) {
 
             
@@ -386,12 +446,37 @@ is_loading_right , set_is_loading_right,
                           }
                         
                     } , [arr_of_recipes , page_num , set_check_for_no_results])
+            //_________________________________________________________________________________
+                    function check_for_bookmarked_recipe_existance_function(recieved_recipe) {
 
+                      console.log(recieved_recipe)
+                  
+                      let flag = false ;
+            
+                      for( let i = 0 ; i < bookmarks_arr.length ; i++) {
+                        if(bookmarks_arr[i] === recieved_recipe.id) {
+                          flag = true ;
+                          return flag ;
+                        }
+                      }
+            
+                      return flag ;
+                    }
             //_________________________________________________________________________________
                     function handle_recipe_click(event_info_object , val) {
 
                       if(recipe_details.id === val.id) return ;
 
+                      
+                      if(check_for_bookmarked_recipe_existance_function(val) === true){
+                        console.log(`recipe is bookmarked`)
+                        set_check_book_mark_right_clicked(true)
+                      }
+                      else if (check_for_bookmarked_recipe_existance_function(val) === false){
+                        console.log(`recipe is not bookmarked`)
+                        set_check_book_mark_right_clicked(false) ;
+                      }
+                      
                       set_recipe_clicked(true) ;
                       set_recipe_object_to_show(val) ;
                       set_clicked_id(val.id)
@@ -407,7 +492,7 @@ is_loading_right , set_is_loading_right,
                         const respose = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${recieved_recipe_id}?key=${API_KEY}`) ;
                         const data = await respose.json() ;
 
-                        console.log(data.data.recipe) ;
+                        // console.log(data.data.recipe) ;
 
                         set_recipe_details(data.data.recipe);
                           
@@ -499,3 +584,5 @@ is_loading_right , set_is_loading_right,
 
   )
 }
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
