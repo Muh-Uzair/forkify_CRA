@@ -19,6 +19,8 @@ export default function App() {
   const [check_for_no_results , set_check_for_no_results]= useState(false) ;
   const [recipe_clicked , set_recipe_clicked] = useState(false) ;
   const [recipe_object_to_show , set_recipe_object_to_show] = useState({}) ; 
+  const [recipe_details , set_recipe_details] = useState({}) ;
+  const [is_loading_right , set_is_loading_right] = useState(false) ;
 
 
 
@@ -69,6 +71,12 @@ export default function App() {
           recipe_object_to_show={recipe_object_to_show}
           set_recipe_object_to_show={set_recipe_object_to_show}
 
+          recipe_details={recipe_details}
+          set_recipe_details={set_recipe_details}
+
+          is_loading_right={is_loading_right}
+          set_is_loading_right={set_is_loading_right}
+
           ></LEFT_COMPONENT>
 
 
@@ -81,11 +89,15 @@ export default function App() {
               <p className="text_start_searching">Start by searching for a recipe or <br></br> an ingredient. Have fun!</p>
               
             </div>}
-            {recipe_clicked && 
+            {is_loading_right ? 
+            <p className="text_loading">LOADING...</p> 
+            : 
+            recipe_clicked  
+            ? 
             <div className="div_show_recipe_detials">
 
               <div className="div_img_big_recipe">
-                <img className="img_big_recipe" src={recipe_object_to_show.image_url} alt="img" />
+                <img className="img_big_recipe" src={recipe_details.image_url} alt="img" />
               </div>
 
 
@@ -93,7 +105,7 @@ export default function App() {
 
                 <div className="div_time">
                   <img className="clock_img" src="clock_icon.png" alt="img"/>
-                  <p className="text_time"><strong>75</strong> MINUTES</p>
+                  <p className="text_time"><strong>{recipe_details.cooking_time}</strong> MINUTES</p>
 
                 </div>
 
@@ -101,7 +113,7 @@ export default function App() {
 
                   <img className="img_servings" src="servings_icon.png" alt="img" />
 
-                  <p className="text_servings"><strong>4</strong> SERVINGS</p>
+                  <p className="text_servings"><strong>{recipe_details.servings}</strong> SERVINGS</p>
 
                   <button className="btn_plus">
                     <img className="img_plus" src="plus_icon.png" alt="img"/>
@@ -134,12 +146,17 @@ export default function App() {
 
                      <p className="text_how_to_cook_it">HOW TO COOK IT</p>
                      <p className="text_carefully">This recipe was carefully designed and tested by All Recipes. Please check out<br/>directions at their website.</p>
+
+                     <a href={recipe_details.source_url} target="_blank" rel="noreferrer">
                      <button className="btn_directions">DIRECTIONS &rarr;</button>
+                     </a>
                 
               </div>
 
 
             </div>
+            :
+            <></>
             }
 
           </section>
@@ -289,12 +306,15 @@ is_loading , set_is_loading ,
 page_num , set_page_num ,
 check_for_no_results , set_check_for_no_results ,
 recipe_clicked , set_recipe_clicked ,
-recipe_object_to_show , set_recipe_object_to_show
+recipe_object_to_show , set_recipe_object_to_show ,
+recipe_details , set_recipe_details ,
+is_loading_right , set_is_loading_right,
 }) {
 
             
             const [arr_of_recipes_for_display , set_arr_of_recipes_for_display ] = useState([]) ;
             const last_page = useRef(1) ;
+            const [clicked_id , set_clicked_id] = useState("") ;
 
             
 
@@ -339,7 +359,36 @@ recipe_object_to_show , set_recipe_object_to_show
 
                       set_recipe_clicked(true) ;
                       set_recipe_object_to_show(val) ;
+                      set_clicked_id(val.id)
+                      fetch_recipe_details_function(val.id)
                       
+                    }
+            //_________________________________________________________________________________
+                    async function fetch_recipe_details_function(recieved_recipe_id) {
+
+                      try{
+                        
+                        set_is_loading_right(true)
+                        const respose = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${recieved_recipe_id}?key=${API_KEY}`) ;
+                        const data = await respose.json() ;
+
+                        console.log(data.data.recipe) ;
+
+                        set_recipe_details(data.data.recipe);
+                          
+                        set_is_loading_right(false) ;
+                          
+                      }
+                      catch(err){
+
+                        console.log(err)
+                      }
+                      finally{
+
+                      }
+
+                      
+
                     }
                     
               
@@ -356,7 +405,7 @@ recipe_object_to_show , set_recipe_object_to_show
 
         
           {is_loading === true ? 
-          <p className="text_loading">LOADING...</p> 
+          <p className="text_loading" >LOADING...</p> 
           : 
           check_for_no_results ? 
           <>
@@ -365,7 +414,10 @@ recipe_object_to_show , set_recipe_object_to_show
           : 
           <ul className="ul_recipe_list">
             {arr_of_recipes_for_display.map( val => (
-              <li key={val.id} onClick={(e) => handle_recipe_click(e , val)}>
+              <li key={val.id} 
+              onClick={(e) => handle_recipe_click(e , val)}
+              style={ clicked_id===val.id ? {backgroundColor:"#ffa43b2a"} : {} }
+              >
 
                 <div className="div_recipe_img">
                   <img className="img_recipe" src={val.image_url} alt="img"/>
