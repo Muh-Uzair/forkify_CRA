@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { API_KEY } from "../App";
 
+
+
 ////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 export function HEADER_COMPONENT({
@@ -12,67 +14,68 @@ export function HEADER_COMPONENT({
   const check_for_same_search = useRef("");
 
 
-  //__________________________________________________________________________________________
-  function handle_form_submit_search_btn_click(event_info_object) {
-    event_info_object.preventDefault();
+              //__________________________________________________________________________________________
+                      function handle_form_submit_search_btn_click(event_info_object) {
+                        event_info_object.preventDefault();
 
-    set_inputed_recipe_name("");
+                        set_inputed_recipe_name("");
 
-    if (check_for_same_search.current === inputed_recipe_name) {
+                        if (check_for_same_search.current === inputed_recipe_name) {
 
-      return;
-    }
+                          return;
+                        }
 
-    check_for_same_search.current = inputed_recipe_name;
-
-
-    fetch_recipe();
+                        check_for_same_search.current = inputed_recipe_name;
 
 
-    set_page_num(1);
-
-  }
-  //__________________________________________________________________________________________
-  async function fetch_recipe() {
+                        fetch_recipe();
 
 
+                        set_page_num(1);
 
-    try {
-
-      set_is_loading(true);
-
-      const respose = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes?search=${inputed_recipe_name}&key=${API_KEY}`);
-      const data = await respose.json();
-
-      // const recieved_arr_of_reciepes = [...data.data.recipes] ;
-      set_arr_of_recipes(arr_of_recipes => [{}, ...data.data.recipes]);
-
-      set_is_loading(false);
+                      }
+              //__________________________________________________________________________________________
+                      async function fetch_recipe() {
 
 
-    }
-    catch (err) {
 
-      console.log(err);
-    }
-    finally {
-    }
+                        try {
 
+                          set_is_loading(true);
 
-  }
-  //__________________________________________________________________________________________
-  function handle_input_change(event_info_object) {
+                          const respose = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes?search=${inputed_recipe_name}&key=${API_KEY}`);
+                          const data = await respose.json();
 
-    set_inputed_recipe_name(event_info_object.target.value);
+                          // const recieved_arr_of_reciepes = [...data.data.recipes] ;
+                          set_arr_of_recipes(arr_of_recipes => [{}, ...data.data.recipes]);
 
-  }
+                          set_is_loading(false);
 
 
+                        }
+                        catch (err) {
+
+                          console.log(err);
+                        }
+                        finally {
+                        }
+
+
+                      }
+              //__________________________________________________________________________________________
+                      function handle_input_change(event_info_object) {
+
+                        set_inputed_recipe_name(event_info_object.target.value);
+
+                      }
 
 
 
 
-  //---------------------------------------------------------------------------------
+
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
   return (
 
     <header className="section_header">
@@ -118,5 +121,9 @@ export function HEADER_COMPONENT({
     </header>
 
   );
-  //---------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+
+
+
 }

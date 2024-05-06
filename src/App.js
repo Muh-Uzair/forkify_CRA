@@ -16,43 +16,43 @@ export const API_KEY = `d84478c6-6132-4c64-b5fa-2427ec2eac58` ;
 export default function App() {
 
   
-        const [arr_of_recipes , set_arr_of_recipes] = useState([])
-        const [is_loading , set_is_loading] = useState(false) ;
-        const [page_num , set_page_num] = useState(1) ;
-        const [check_for_no_results , set_check_for_no_results]= useState(false) ;
-        const [recipe_clicked , set_recipe_clicked] = useState(false) ;
-        const [recipe_object_to_show , set_recipe_object_to_show] = useState({}) ; 
-        const [recipe_details , set_recipe_details] = useState({}) ;
-        const [is_loading_right , set_is_loading_right] = useState(false) ;
+              const [arr_of_recipes , set_arr_of_recipes] = useState([])
+              const [is_loading , set_is_loading] = useState(false) ;
+              const [page_num , set_page_num] = useState(1) ;
+              const [check_for_no_results , set_check_for_no_results]= useState(false) ;
+              const [recipe_clicked , set_recipe_clicked] = useState(false) ;
+              const [recipe_object_to_show , set_recipe_object_to_show] = useState({}) ; 
+              const [recipe_details , set_recipe_details] = useState({}) ;
+              const [is_loading_right , set_is_loading_right] = useState(false) ;
+              
+              const [bookmarks_arr , set_bookmarks_arr] = useState(function() {
+                let val_from_local_storage = JSON.parse(localStorage.getItem("bookmarked_recipe_arr")) ;
+                if(!val_from_local_storage) {
+                  val_from_local_storage=[] ;
+                }
         
-        const [bookmarks_arr , set_bookmarks_arr] = useState(function() {
-          let val_from_local_storage = JSON.parse(localStorage.getItem("bookmarked_recipe_arr")) ;
-          if(!val_from_local_storage) {
-            val_from_local_storage=[] ;
-          }
-  
-          return val_from_local_storage ;
-        }) ;
-  
-
-        const [check_book_mark_right_clicked , set_check_book_mark_right_clicked] = useState(false) ;
+                return val_from_local_storage ;
+              }) ;
         
 
-
-        //__________________________________________________________________________________
-                useEffect(function() {
-
-                localStorage.setItem("bookmarked_recipe_arr" ,  JSON.stringify(bookmarks_arr)) ;
-                },[bookmarks_arr])
-        //__________________________________________________________________________________
-  
+              const [check_book_mark_right_clicked , set_check_book_mark_right_clicked] = useState(false) ;
+              
 
 
+              //__________________________________________________________________________________
+                      useEffect(function() {
+
+                      localStorage.setItem("bookmarked_recipe_arr" ,  JSON.stringify(bookmarks_arr)) ;
+                      },[bookmarks_arr])
+              
+        
 
 
 
 
-//---------------------------------------------------------------------------------
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
   return(
     <div className="div_containing_everything">
 
@@ -129,7 +129,8 @@ export default function App() {
 
     </div>
   )
-//---------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 
 
 }

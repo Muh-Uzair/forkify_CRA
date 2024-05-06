@@ -1,3 +1,7 @@
+
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 export function RIGHT_COMPONENT({
@@ -6,38 +10,45 @@ export function RIGHT_COMPONENT({
 }) {
 
 
-  //__________________________________________________________________________________
-  function check_for_bookmarked_recipe_existance_function() {
+            //__________________________________________________________________________________
+                    function check_for_bookmarked_recipe_existance_function() {
 
-    let flag = false;
+                      let flag = false;
 
-    for (let i = 0; i < bookmarks_arr.length; i++) {
-      if (bookmarks_arr[i] === recipe_details.id) {
-        flag = true;
-      }
-    }
+                      for (let i = 0; i < bookmarks_arr.length; i++) {
+                        if (bookmarks_arr[i] === recipe_details.id) {
+                          flag = true;
+                        }
+                      }
 
-    return flag;
-  }
-  //__________________________________________________________________________________
-  function book_mark_right_clicked_function(event_info_object) {
-
-
-    if (check_for_bookmarked_recipe_existance_function() === false) {
-      // console.log(`not exist : so added`)
-      set_bookmarks_arr(bookmarks_arr => [...bookmarks_arr, recipe_details.id]);
-      set_check_book_mark_right_clicked(true);
-    }
-    else if (check_for_bookmarked_recipe_existance_function() === true) {
-      // console.log(`exist : so removed`)
-      set_bookmarks_arr(bookmarks_arr => bookmarks_arr.filter(val => val !== recipe_details.id));
-      set_check_book_mark_right_clicked(false);
-    }
-
-  }
+                      return flag;
+                    }
+            //__________________________________________________________________________________
+                    function book_mark_right_clicked_function(event_info_object) {
 
 
+                      if (check_for_bookmarked_recipe_existance_function() === false) {
+                        // console.log(`not exist : so added`)
+                        set_bookmarks_arr(bookmarks_arr => [...bookmarks_arr, recipe_details.id]);
+                        set_check_book_mark_right_clicked(true);
+                      }
+                      else if (check_for_bookmarked_recipe_existance_function() === true) {
+                        // console.log(`exist : so removed`)
+                        set_bookmarks_arr(bookmarks_arr => bookmarks_arr.filter(val => val !== recipe_details.id));
+                        set_check_book_mark_right_clicked(false);
+                      }
 
+                    }
+
+
+
+
+
+
+                    
+
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
   return (
 
     <section className="section_right">
@@ -151,4 +162,9 @@ export function RIGHT_COMPONENT({
 
     </section>
   );
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+
+
+
 }

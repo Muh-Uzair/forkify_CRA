@@ -18,104 +18,104 @@ export function LEFT_COMPONENT({
 
 
 
-  //_________________________________________________________________________________
-  function handle_btn_back_click(event_info_object) {
-    set_page_num(page_num => page_num - 1);
+            //_________________________________________________________________________________
+                    function handle_btn_back_click(event_info_object) {
+                      set_page_num(page_num => page_num - 1);
+                    }
+            //_________________________________________________________________________________
+                    function handle_btn_forward_click(event_info_object) {
+                      set_page_num(page_num => page_num + 1);
+                    }
+            //_________________________________________________________________________________
+                    useEffect(function () {
 
-  }
-  //_________________________________________________________________________________
-  function handle_btn_forward_click(event_info_object) {
-    set_page_num(page_num => page_num + 1);
-  }
-  //_________________________________________________________________________________
-  useEffect(function () {
-
-    if (arr_of_recipes.length) {
-
-
-      // console.log(arr_of_recipes.slice(page_num*10-9 , page_num*10+1)) ;
-      // console.log(arr_of_recipes) ;
-      set_arr_of_recipes_for_display(arr_of_recipes.slice(page_num * 10 - 9, page_num * 10 + 1));
-      last_page.current = (Math.trunc(arr_of_recipes.length / 10)) + 1;
+                      if (arr_of_recipes.length) {
 
 
-    }
-    if (arr_of_recipes.length === 1) {
-      set_check_for_no_results(true);
-    }
-    else if (arr_of_recipes.length > 1) {
-      set_check_for_no_results(false);
-    }
-
-  }, [arr_of_recipes, page_num, set_check_for_no_results]);
-  //_________________________________________________________________________________
-  function check_for_bookmarked_recipe_existance_function(recieved_recipe) {
-    // console.log(recieved_recipe)
-
-    let flag = false;
-
-    for (let i = 0; i < bookmarks_arr.length; i++) {
-      if (bookmarks_arr[i] === recieved_recipe.id) {
-        flag = true;
-        return flag;
-      }
-    }
-
-    return flag;
-  }
-  //_________________________________________________________________________________
-  function handle_recipe_click(event_info_object, val) {
-
-    if (recipe_details.id === val.id) return;
+                        // console.log(arr_of_recipes.slice(page_num*10-9 , page_num*10+1)) ;
+                        // console.log(arr_of_recipes) ;
+                        set_arr_of_recipes_for_display(arr_of_recipes.slice(page_num * 10 - 9, page_num * 10 + 1));
+                        last_page.current = (Math.trunc(arr_of_recipes.length / 10)) + 1;
 
 
-    if (check_for_bookmarked_recipe_existance_function(val) === true) {
+                      }
+                      if (arr_of_recipes.length === 1) {
+                        set_check_for_no_results(true);
+                      }
+                      else if (arr_of_recipes.length > 1) {
+                        set_check_for_no_results(false);
+                      }
 
-      set_check_book_mark_right_clicked(true);
-    }
-    else if (check_for_bookmarked_recipe_existance_function(val) === false) {
+                    }, [arr_of_recipes, page_num, set_check_for_no_results]);
+            //_________________________________________________________________________________
+                    function check_for_bookmarked_recipe_existance_function(recieved_recipe) {
+                      // console.log(recieved_recipe)
 
-      set_check_book_mark_right_clicked(false);
-    }
+                      let flag = false;
 
-    set_recipe_clicked(true);
-    set_recipe_object_to_show(val);
-    set_clicked_id(val.id);
-    fetch_recipe_details_function(val.id);
+                      for (let i = 0; i < bookmarks_arr.length; i++) {
+                        if (bookmarks_arr[i] === recieved_recipe.id) {
+                          flag = true;
+                          return flag;
+                        }
+                      }
 
-  }
-  //_________________________________________________________________________________
-  async function fetch_recipe_details_function(recieved_recipe_id) {
+                      return flag;
+                    }
+            //_________________________________________________________________________________
+                    function handle_recipe_click(event_info_object, val) {
 
-    try {
-
-      set_is_loading_right(true);
-      const respose = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${recieved_recipe_id}?key=${API_KEY}`);
-      const data = await respose.json();
-
-      // console.log(data.data.recipe) ;
-      set_recipe_details(data.data.recipe);
-
-      set_is_loading_right(false);
-
-    }
-    catch (err) {
-
-      console.log(err);
-    }
-    finally {
-    }
+                      if (recipe_details.id === val.id) return;
 
 
+                      if (check_for_bookmarked_recipe_existance_function(val) === true) {
 
-  }
+                        set_check_book_mark_right_clicked(true);
+                      }
+                      else if (check_for_bookmarked_recipe_existance_function(val) === false) {
 
+                        set_check_book_mark_right_clicked(false);
+                      }
+
+                      set_recipe_clicked(true);
+                      set_recipe_object_to_show(val);
+                      set_clicked_id(val.id);
+                      fetch_recipe_details_function(val.id);
+
+                    }
+            //_________________________________________________________________________________
+                    async function fetch_recipe_details_function(recieved_recipe_id) {
+
+                      try {
+
+                        set_is_loading_right(true);
+                        const respose = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${recieved_recipe_id}?key=${API_KEY}`);
+                        const data = await respose.json();
+
+                        // console.log(data.data.recipe) ;
+                        set_recipe_details(data.data.recipe);
+
+                        set_is_loading_right(false);
+
+                      }
+                      catch (err) {
+
+                        console.log(err);
+                      }
+                      finally {
+                      }
+
+
+
+                    }
 
 
 
 
 
 
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
   return (
 
     <section className="section_left">
@@ -176,4 +176,8 @@ export function LEFT_COMPONENT({
     </section>
 
   );
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+
+
 }
