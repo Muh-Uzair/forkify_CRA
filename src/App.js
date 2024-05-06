@@ -28,42 +28,14 @@ export default function App() {
             val_from_local_storage=[] ;
           }
   
-          return val_from_local_storage
+          return val_from_local_storage ;
         }) ;
   
 
         const [check_book_mark_right_clicked , set_check_book_mark_right_clicked] = useState(false) ;
         
 
-        //__________________________________________________________________________________
-                function check_for_bookmarked_recipe_existance_function() {
 
-                  let flag = false ;
-
-                  for( let i = 0 ; i < bookmarks_arr.length ; i++) {
-                    if(bookmarks_arr[i] === recipe_details.id) {
-                      flag = true ;
-                    }
-                  }
-
-                  return flag ;
-                }
-        //__________________________________________________________________________________
-                function book_mark_right_clicked_function(event_info_object) {
-
-                  
-                  if(check_for_bookmarked_recipe_existance_function() === false) {
-                    // console.log(`not exist : so added`)
-                    set_bookmarks_arr(bookmarks_arr => [...bookmarks_arr , recipe_details.id])
-                    set_check_book_mark_right_clicked(true) ;
-                  }
-                  else if(check_for_bookmarked_recipe_existance_function() === true ) {
-                    // console.log(`exist : so removed`)
-                    set_bookmarks_arr(bookmarks_arr => bookmarks_arr.filter(val => val !== recipe_details.id))
-                    set_check_book_mark_right_clicked(false) ;
-                  }
-                
-                }
         //__________________________________________________________________________________
                 useEffect(function() {
 
@@ -84,62 +56,127 @@ export default function App() {
 
       <main className="main_box">
 
-        <HEADER_COMPONENT 
-        arr_of_recipes={arr_of_recipes}
-        set_arr_of_recipes={set_arr_of_recipes}
+              <HEADER_COMPONENT 
+              arr_of_recipes={arr_of_recipes}
+              set_arr_of_recipes={set_arr_of_recipes}
 
-        is_loading={is_loading}
-        set_is_loading={set_is_loading}
+              is_loading={is_loading}
+              set_is_loading={set_is_loading}
 
-        page_num={page_num}
-        set_page_num={set_page_num}
+              page_num={page_num}
+              set_page_num={set_page_num}
 
-        check_for_no_results={check_for_no_results}
-        set_check_for_no_results={set_check_for_no_results}
+              check_for_no_results={check_for_no_results}
+              set_check_for_no_results={set_check_for_no_results}
 
-        >
+              >
 
-        </HEADER_COMPONENT>
+              </HEADER_COMPONENT>
 
 
         <section className="section_left_right_both">
 
-          <LEFT_COMPONENT 
-          arr_of_recipes={arr_of_recipes} 
-          set_arr_of_recipes={set_arr_of_recipes}
+              <LEFT_COMPONENT 
+              arr_of_recipes={arr_of_recipes} 
+              set_arr_of_recipes={set_arr_of_recipes}
 
-          is_loading={is_loading}
-          set_is_loading={set_is_loading}
+              is_loading={is_loading}
+              set_is_loading={set_is_loading}
 
-          page_num={page_num}
-          set_page_num={set_page_num}
+              page_num={page_num}
+              set_page_num={set_page_num}
 
-          check_for_no_results={check_for_no_results}
-          set_check_for_no_results={set_check_for_no_results}
+              check_for_no_results={check_for_no_results}
+              set_check_for_no_results={set_check_for_no_results}
 
-          recipe_clicked={recipe_clicked}
-          set_recipe_clicked={set_recipe_clicked}
+              recipe_clicked={recipe_clicked}
+              set_recipe_clicked={set_recipe_clicked}
 
-          recipe_object_to_show={recipe_object_to_show}
-          set_recipe_object_to_show={set_recipe_object_to_show}
+              recipe_object_to_show={recipe_object_to_show}
+              set_recipe_object_to_show={set_recipe_object_to_show}
 
-          recipe_details={recipe_details}
-          set_recipe_details={set_recipe_details}
+              recipe_details={recipe_details}
+              set_recipe_details={set_recipe_details}
 
-          is_loading_right={is_loading_right}
-          set_is_loading_right={set_is_loading_right}
+              is_loading_right={is_loading_right}
+              set_is_loading_right={set_is_loading_right}
 
-          bookmarks_arr={bookmarks_arr}
-          set_bookmarks_arr={bookmarks_arr}
+              bookmarks_arr={bookmarks_arr}
+              set_bookmarks_arr={bookmarks_arr}
 
-          check_book_mark_right_clicked={check_book_mark_right_clicked}
-          set_check_book_mark_right_clicked={set_check_book_mark_right_clicked}
+              check_book_mark_right_clicked={check_book_mark_right_clicked}
+              set_check_book_mark_right_clicked={set_check_book_mark_right_clicked}
 
-          ></LEFT_COMPONENT>
+              ></LEFT_COMPONENT>
+
+
+              <RIGHT_COMPONENT
+              recipe_clicked={recipe_clicked} set_recipe_clicked={recipe_clicked}
+              is_loading_right={is_loading_right} set_is_loading_right={set_is_loading_right}
+              recipe_details={recipe_details} set_recipe_details={set_recipe_details}
+              check_book_mark_right_clicked={check_book_mark_right_clicked} set_check_book_mark_right_clicked={set_check_book_mark_right_clicked}
+              bookmarks_arr={bookmarks_arr} set_bookmarks_arr={set_bookmarks_arr}
+              
+              ></RIGHT_COMPONENT>
+  
+
+        </section>
+
+      </main>
+
+    </div>
+  )
+//---------------------------------------------------------------------------------
+
+
+}
+/////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+function RIGHT_COMPONENT({
+recipe_clicked, set_recipe_clicked ,
+is_loading_right, set_is_loading_right ,
+recipe_details , set_recipe_details ,
+check_book_mark_right_clicked , set_check_book_mark_right_clicked,
+bookmarks_arr , set_bookmarks_arr ,
+
+}){
+
+
+          //__________________________________________________________________________________
+                  function check_for_bookmarked_recipe_existance_function() {
+
+                    let flag = false ;
+  
+                    for( let i = 0 ; i < bookmarks_arr.length ; i++) {
+                      if(bookmarks_arr[i] === recipe_details.id) {
+                        flag = true ;
+                      }
+                    }
+  
+                    return flag ;
+                  }
+          //__________________________________________________________________________________
+                  function book_mark_right_clicked_function(event_info_object) {
+  
+                    
+                    if(check_for_bookmarked_recipe_existance_function() === false) {
+                      // console.log(`not exist : so added`)
+                      set_bookmarks_arr(bookmarks_arr => [...bookmarks_arr , recipe_details.id])
+                      set_check_book_mark_right_clicked(true) ;
+                    }
+                    else if(check_for_bookmarked_recipe_existance_function() === true ) {
+                      // console.log(`exist : so removed`)
+                      set_bookmarks_arr(bookmarks_arr => bookmarks_arr.filter(val => val !== recipe_details.id))
+                      set_check_book_mark_right_clicked(false) ;
+                    }
+                  
+                  }
 
 
 
-          <section className="section_right">
+  return(
+
+    <section className="section_right">
 
             {!recipe_clicked && 
             <div className="div_before_searching"> 
@@ -250,19 +287,11 @@ export default function App() {
             <></>
             }
 
-          </section>
-
-
-        </section>
-
-      </main>
-
-    </div>
+    </section>
   )
-//---------------------------------------------------------------------------------
-
-
 }
+
+
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 function HEADER_COMPONENT({
@@ -360,7 +389,7 @@ check_for_no_results , set_check_for_no_results ,
            
           <button className="btn_search" onClick={(e) => handle_form_submit_search_btn_click(e)}>
                   <img className="img_search_icon" src="search_icon_2.png"  alt="img"/>
-                  <p className="text_search">SEARCH</p>
+                  <p className="text_search" >SEARCH</p>
           </button>
 
           
@@ -449,7 +478,7 @@ check_book_mark_right_clicked , set_check_book_mark_right_clicked ,
             //_________________________________________________________________________________
                     function check_for_bookmarked_recipe_existance_function(recieved_recipe) {
 
-                      console.log(recieved_recipe)
+                      // console.log(recieved_recipe)
                   
                       let flag = false ;
             
@@ -469,11 +498,11 @@ check_book_mark_right_clicked , set_check_book_mark_right_clicked ,
 
                       
                       if(check_for_bookmarked_recipe_existance_function(val) === true){
-                        console.log(`recipe is bookmarked`)
+                        
                         set_check_book_mark_right_clicked(true)
                       }
                       else if (check_for_bookmarked_recipe_existance_function(val) === false){
-                        console.log(`recipe is not bookmarked`)
+                        
                         set_check_book_mark_right_clicked(false) ;
                       }
                       

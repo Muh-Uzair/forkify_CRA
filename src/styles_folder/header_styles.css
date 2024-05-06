@@ -81,6 +81,8 @@
 
     
 
+    
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -94,18 +96,16 @@
     transition: all ease 0.2s;
 
 }
-.btn_search:hover {
-    background-image: linear-gradient(to bottom right, #ffac4e, #ff6969);
-    
-}
 .btn_search:active{
-    background-image: linear-gradient(to bottom right, #ffb25a, #ff7575);
+    background-image: linear-gradient(to bottom right, #ffb25ad4, #ff7575cf);
     
 }
 
 .img_search_icon{
     width: 16px;
     height: 16px;
+
+    
 
     display: inline;
     margin-right: 15px;
@@ -121,6 +121,7 @@
 }
 .text_search{
     display: inline;  
+    margin: 0px;
 
     font-family: gilroy;
     font-size: 12px;   
