@@ -124,6 +124,8 @@
     cursor: pointer;
     margin-left: 10px;
 
+    outline: none;
+
 }
 .btn_plus:active{
     transform: translateY(1px);
@@ -143,6 +145,8 @@
     align-items: center;
 
     cursor: pointer;
+
+    outline: none;
 
 }
 .btn_minus:active{

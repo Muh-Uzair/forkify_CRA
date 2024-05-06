@@ -4,7 +4,17 @@ import { API_KEY } from "../App";
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 export function LEFT_COMPONENT({
-  arr_of_recipes, set_arr_of_recipes, is_loading, set_is_loading, page_num, set_page_num, check_for_no_results, set_check_for_no_results, recipe_clicked, set_recipe_clicked, recipe_object_to_show, set_recipe_object_to_show, recipe_details, set_recipe_details, is_loading_right, set_is_loading_right, bookmarks_arr, set_bookmarks_arr, check_book_mark_right_clicked, set_check_book_mark_right_clicked,
+arr_of_recipes, set_arr_of_recipes, 
+is_loading, set_is_loading, 
+page_num, set_page_num, 
+check_for_no_results, set_check_for_no_results, 
+recipe_clicked, set_recipe_clicked,
+recipe_object_to_show, set_recipe_object_to_show, 
+recipe_details, set_recipe_details,
+is_loading_right, set_is_loading_right, 
+bookmarks_arr, set_bookmarks_arr, 
+check_book_mark_right_clicked, set_check_book_mark_right_clicked,
+
 }) {
 
 
@@ -81,6 +91,8 @@ export function LEFT_COMPONENT({
                       set_recipe_object_to_show(val);
                       set_clicked_id(val.id);
                       fetch_recipe_details_function(val.id);
+
+                      
 
                     }
             //_________________________________________________________________________________

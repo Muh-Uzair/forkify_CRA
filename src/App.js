@@ -24,7 +24,6 @@ export default function App() {
               const [recipe_object_to_show , set_recipe_object_to_show] = useState({}) ; 
               const [recipe_details , set_recipe_details] = useState({}) ;
               const [is_loading_right , set_is_loading_right] = useState(false) ;
-              
               const [bookmarks_arr , set_bookmarks_arr] = useState(function() {
                 let val_from_local_storage = JSON.parse(localStorage.getItem("bookmarked_recipe_arr")) ;
                 if(!val_from_local_storage) {
@@ -33,9 +32,8 @@ export default function App() {
         
                 return val_from_local_storage ;
               }) ;
-        
-
               const [check_book_mark_right_clicked , set_check_book_mark_right_clicked] = useState(false) ;
+              
               
 
 
@@ -110,15 +108,27 @@ export default function App() {
               check_book_mark_right_clicked={check_book_mark_right_clicked}
               set_check_book_mark_right_clicked={set_check_book_mark_right_clicked}
 
+              
+
               ></LEFT_COMPONENT>
 
 
               <RIGHT_COMPONENT
-              recipe_clicked={recipe_clicked} set_recipe_clicked={recipe_clicked}
-              is_loading_right={is_loading_right} set_is_loading_right={set_is_loading_right}
-              recipe_details={recipe_details} set_recipe_details={set_recipe_details}
-              check_book_mark_right_clicked={check_book_mark_right_clicked} set_check_book_mark_right_clicked={set_check_book_mark_right_clicked}
+              recipe_clicked={recipe_clicked} 
+              set_recipe_clicked={recipe_clicked}
+
+              is_loading_right={is_loading_right} 
+              set_is_loading_right={set_is_loading_right}
+
+              recipe_details={recipe_details} 
+              set_recipe_details={set_recipe_details}
+
+              check_book_mark_right_clicked={check_book_mark_right_clicked} 
+              set_check_book_mark_right_clicked={set_check_book_mark_right_clicked}
+
               bookmarks_arr={bookmarks_arr} set_bookmarks_arr={set_bookmarks_arr}
+
+              
               
               ></RIGHT_COMPONENT>
   

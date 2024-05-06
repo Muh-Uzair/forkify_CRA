@@ -3,11 +3,35 @@
 
 
 /////////////////////////////////////////////////////////////////////////////////////
+
+import { useEffect, useState } from "react";
+
 /////////////////////////////////////////////////////////////////////////////////////
 export function RIGHT_COMPONENT({
-  recipe_clicked, set_recipe_clicked, is_loading_right, set_is_loading_right, recipe_details, set_recipe_details, check_book_mark_right_clicked, set_check_book_mark_right_clicked, bookmarks_arr, set_bookmarks_arr,
+
+recipe_clicked, set_recipe_clicked, 
+is_loading_right, set_is_loading_right, 
+recipe_details, set_recipe_details, 
+check_book_mark_right_clicked, set_check_book_mark_right_clicked, 
+bookmarks_arr, set_bookmarks_arr,
 
 }) {
+            const [servings_number , set_servings_number] = useState(0)
+
+            const [cooking_time_for_one_person , set_cooking_time_for_one_person] = useState(0) ;
+            const [total_cooking_time , set_total_cooking_time] = useState(0) ;
+
+            const [initial_quantity , set_initial_quantity] = useState([]) ;
+
+            
+
+            
+            
+            
+
+            
+
+            
 
 
             //__________________________________________________________________________________
@@ -39,13 +63,82 @@ export function RIGHT_COMPONENT({
                       }
 
                     }
+            //__________________________________________________________________________________
+                    function btn_plus_clicked(event_info_object){
+                      set_servings_number( servings_number => servings_number+1)
+                    }
+            //__________________________________________________________________________________
+                    function btn_minus_clicked(event_info_object){
+                      if(servings_number===1) return 
+
+                      set_servings_number( servings_number => servings_number-1)  
+                                    
+                    }
+            //__________________________________________________________________________________
+                    useEffect(function() {
+
+                      
+
+                      function callback(){
+                        
+                        set_servings_number(recipe_details.servings) ;
+                        set_total_cooking_time(0) ;
+
+                        set_cooking_time_for_one_person(recipe_details.cooking_time / recipe_details.servings)
+
+                        
+
+                        const new_arr = recipe_details.ingredients.map( (val) => {
+                          if(val.quantity) {
+                            val.quantity = (val.quantity / recipe_details.servings).toFixed(2)
+                          }
+                          return val.quantity ;
+                        })
+
+                       set_initial_quantity(new_arr)
+                      }
+
+                      if (recipe_details && Object.keys(recipe_details).length > 0) {
+                        callback();
+                      }
+
+                    },[recipe_details.id])
+
+            //__________________________________________________________________________________
+                    useEffect(function() {
+
+                      function callback() {
+
+                        set_total_cooking_time( Math.ceil(cooking_time_for_one_person * servings_number) )
+
+                        
+                        const new_arr = recipe_details.ingredients.map( (val,i) => {
+
+                          if(val.quantity) {
+                            val.quantity = (initial_quantity[i] * servings_number).toFixed(1)
+                          }
+                          
+                          return val ;
+                        })
+
+                        set_recipe_details(recipe_details => ({ ...recipe_details, new_arr }));
+
+                      }
+                      if(servings_number > 0) {
+                        callback() ;
+                      }
+
+                    },[servings_number])
+
+
+            
 
 
 
 
 
 
-                    
+
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
@@ -75,7 +168,7 @@ export function RIGHT_COMPONENT({
 
               <div className="div_time">
                 <img className="clock_img" src="clock_icon.png" alt="img" />
-                <p className="text_time"><strong>{recipe_details.cooking_time}</strong> MINUTES</p>
+                <p className="text_time"><strong>{total_cooking_time ? total_cooking_time : recipe_details.cooking_time}</strong> MINUTES</p>
 
               </div>
 
@@ -83,13 +176,13 @@ export function RIGHT_COMPONENT({
 
                 <img className="img_servings" src="servings_icon.png" alt="img" />
 
-                <p className="text_servings"><strong>{recipe_details.servings}</strong> SERVINGS</p>
+                <p className="text_servings"><strong>{servings_number ? servings_number : recipe_details.servings}</strong> SERVINGS</p>
 
-                <button className="btn_plus">
+                <button className="btn_plus" onClick={(e) => btn_plus_clicked(e)}>
                   <img className="img_plus" src="plus_icon.png" alt="img" />
                 </button>
 
-                <button className="btn_minus">
+                <button className="btn_minus" onClick={(e) => btn_minus_clicked(e)}>
                   <img className="img_minus" src="minus_icon.png" alt="img" />
                 </button>
 
@@ -123,7 +216,7 @@ export function RIGHT_COMPONENT({
                     .map((val, i) => (
                       <li key={i}>
                         <img className="img_tick_icon" src="tick_icon_2.png" alt="img" />
-                        <p className="text_recipe_ingredients_detailed">{val.description}</p>
+                        <p className="text_recipe_ingredients_detailed">{val.quantity} {val.unit} {val.description}</p>
                       </li>
                     ))}
                 </ul>
