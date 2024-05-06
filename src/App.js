@@ -55,6 +55,8 @@ export default function App() {
     <div className="div_containing_everything">
 
 
+
+
       <main className="main_box">
 
               <HEADER_COMPONENT 
@@ -74,6 +76,7 @@ export default function App() {
 
               </HEADER_COMPONENT>
 
+              
 
         <section className="section_left_right_both">
 

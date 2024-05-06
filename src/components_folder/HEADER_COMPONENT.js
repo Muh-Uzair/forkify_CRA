@@ -10,8 +10,9 @@ export function HEADER_COMPONENT({
 }) {
 
 
-  const [inputed_recipe_name, set_inputed_recipe_name] = useState("");
-  const check_for_same_search = useRef("");
+              const [inputed_recipe_name, set_inputed_recipe_name] = useState("");
+              const check_for_same_search = useRef("");
+              const [tool_tip_check, set_tool_tip_check] = useState(false) ;
 
 
               //__________________________________________________________________________________________
@@ -68,6 +69,15 @@ export function HEADER_COMPONENT({
                         set_inputed_recipe_name(event_info_object.target.value);
 
                       }
+              //__________________________________________________________________________________________
+                      function mouse_enteres_bookmark(event_info_object){
+                      
+                          set_tool_tip_check(true) ;
+                      }
+              //__________________________________________________________________________________________
+                      function mouse_leaves_bookmark(event_info_object){
+                        set_tool_tip_check(false) ;
+                      }
 
 
 
@@ -111,9 +121,18 @@ export function HEADER_COMPONENT({
 
 
 
-      <div className="div_add_bookmarks">
-        <img className="img_add_recipe_icon" src="add_book_mark_icon_5.png" alt="img" />
-        <p className="text_add_recipe">BOOKMARKS</p>
+      <div className="div_add_bookmarks" >
+
+        <div className="div_add_bookmarks_inner">
+            <img className="img_add_recipe_icon" src="add_book_mark_icon_5.png" alt="img" />
+            <p className="text_add_recipe">BOOKMARKS</p>
+        </div>
+
+        <div className="div_bookmark_header_tool_tip"
+        >hellow</div>
+        
+         
+
       </div>
 
 

@@ -142,7 +142,7 @@
 /* //////////////////////////////////////////////////////////////////////////////////// */
 .div_add_recipes{
     background-color: rgba(137, 43, 226, 0);
-    width: 100%;
+    width: 140px;
     height: 100%;
 
     display: flex;
@@ -190,19 +190,63 @@
 /* //////////////////////////////////////////////////////////////////////////////////// */
 .div_add_bookmarks{
     background-color: rgba(222, 184, 135, 0);
-    width: 100%;
+    width: 140px;
     height: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
 
     cursor: pointer;
 
+    position: relative;
 }
-.div_add_bookmarks:hover{
+
+.div_add_bookmarks_inner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #ffb25a00;
+    height: 100%;
+    width: 140px;
+    
+    
+    transition: all ease 0.1s;   
+
+    position: relative;
+}
+.div_add_bookmarks_inner:hover{
     background-color: rgb(231, 231, 231);
+}
+
+.div_add_bookmarks_inner:hover + .div_bookmark_header_tool_tip {
+    opacity: 1; /* Show the tooltip when .div_add_bookmarks_inner is hovered */
+    visibility: visible;
+  }
+.div_bookmark_header_tool_tip{
+    position: absolute;
+    top: 80px;
+    right: -20px;
+
+    width: 350px;
+    height: 400px;
+    background-color: aquamarine;
+    opacity: 0;
+    visibility: hidden;
+
+    
+    z-index: 10000;
+
+    transition: all ease 0.5s;
 
 }
+.div_bookmark_header_tool_tip{
+
+ &:hover,
+ div_add_bookmarks_inner:hover + & {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+
+
+
 /* //////////////////////////////////////////////////////////////////////////////////// */
