@@ -6,7 +6,11 @@ import { API_KEY } from "../App";
 ////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
 export function HEADER_COMPONENT({
-  arr_of_recipes, set_arr_of_recipes, is_loading, set_is_loading, page_num, set_page_num, check_for_no_results, set_check_for_no_results,
+arr_of_recipes, set_arr_of_recipes,
+is_loading, set_is_loading, 
+page_num, set_page_num, 
+check_for_no_results, set_check_for_no_results,
+bookmarks_arr_detail , set_bookmarks_arr_detail ,
 }) {
 
 
@@ -69,15 +73,7 @@ export function HEADER_COMPONENT({
                         set_inputed_recipe_name(event_info_object.target.value);
 
                       }
-              //__________________________________________________________________________________________
-                      function mouse_enteres_bookmark(event_info_object){
-                      
-                          set_tool_tip_check(true) ;
-                      }
-              //__________________________________________________________________________________________
-                      function mouse_leaves_bookmark(event_info_object){
-                        set_tool_tip_check(false) ;
-                      }
+
 
 
 

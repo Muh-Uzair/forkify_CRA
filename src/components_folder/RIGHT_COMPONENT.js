@@ -14,6 +14,7 @@ is_loading_right, set_is_loading_right,
 recipe_details, set_recipe_details, 
 check_book_mark_right_clicked, set_check_book_mark_right_clicked, 
 bookmarks_arr, set_bookmarks_arr,
+bookmarks_arr_detail, set_bookmarks_arr_detail
 
 }) {
             const [servings_number , set_servings_number] = useState(0)
@@ -54,11 +55,13 @@ bookmarks_arr, set_bookmarks_arr,
                       if (check_for_bookmarked_recipe_existance_function() === false) {
                         // console.log(`not exist : so added`)
                         set_bookmarks_arr(bookmarks_arr => [...bookmarks_arr, recipe_details.id]);
+                        set_bookmarks_arr_detail( bookmarks_arr_detail => [...bookmarks_arr_detail , recipe_details])
                         set_check_book_mark_right_clicked(true);
                       }
                       else if (check_for_bookmarked_recipe_existance_function() === true) {
                         // console.log(`exist : so removed`)
                         set_bookmarks_arr(bookmarks_arr => bookmarks_arr.filter(val => val !== recipe_details.id));
+                        set_bookmarks_arr_detail(bookmarks_arr_detail => bookmarks_arr_detail.filter(val => val.id !== recipe_details.id))
                         set_check_book_mark_right_clicked(false);
                       }
 
