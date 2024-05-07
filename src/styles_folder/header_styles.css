@@ -247,7 +247,24 @@
     opacity: 1;
   }
 }
+.div_no_bookmarks{
+    display: flex;
 
+    margin-top: 40px;
+    margin-bottom: 40px;
+    justify-content: center;
+    align-items: center;
+}
+.img_cation{
+    width: 38px;
+    height: 38px;
+}
+.text_no_bookmarks{
+    margin: 0px;
+    font-family: gilroy;
+    margin-left: 20px;
+    color: #5e5e5e;
+}
 
 
 
