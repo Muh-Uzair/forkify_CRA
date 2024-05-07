@@ -146,31 +146,59 @@ export default function App() {
 
                               // const from_data_obj = Object.fromEntries(from_data) ;
 
-                              // 2: 
                               const form_data_obj = {};
                               let ingredients = []; // Initialize ingredients array
-
+                              
                               form_data.forEach(([key, value]) => {
                                   if (key.startsWith("ingredient") && value.trim() !== "") {
+                                      // Check if the value contains two commas
+                                      const commaCount = (value.match(/,/g) || []).length;
+                                      if (commaCount !== 2) {
+                                          throw new Error(`Invalid format for ${key}: ${value}. It should contain exactly two commas.`);
+                                      }
+                              
                                       // Split the ingredient value by comma
                                       const parts = value.split(',');
                                       let [quantity, unit, description] = parts;
-                                      
-                                      // Trim each part to handle cases like ",,flour"
-                                      quantity = quantity.trim() || null;
-                                      unit = unit.trim() || null;
-                                      description = description.trim();
-                                      
-                                      ingredients.push({ quantity, unit, description });
+                              
+                                      // Trim each part only if it's not null or undefined
+                                      if (quantity !== null && quantity !== undefined) {
+                                          quantity = quantity.trim() || null;
+                                      }
+                                      if (unit !== null && unit !== undefined) {
+                                          unit = unit.trim() || null;
+                                      }
+                                      if (description !== null && description !== undefined) {
+                                          description = description.trim();
+                                      }
+                              
+                                      // Check if description is missing
+                                      if (!description) {
+                                          throw new Error(`Description is required for ${key}: ${value}`);
+                                      }
+                              
+                                      // Check if quantity is a valid number
+                                      if (!isNaN(quantity)) {
+                                          // Only push to ingredients array if the description is not empty
+                                          if (description !== "") {
+                                              ingredients.push({ quantity, unit, description });
+                                          }
+                                      } else {
+                                          throw new Error(`Quantity should be a number for ${key}: ${value}`);
+                                      }
                                   } else {
-                                      // For non-ingredient keys or empty ingredient values, directly add them to the form_data_obj
-                                      form_data_obj[key] = value;
+                                      // For non-ingredient keys, directly add them to the form_data_obj
+                                      if (value.length > 0) {
+                                          form_data_obj[key] = value;
+                                      }
                                   }
                               });
-
+                              
                               form_data_obj.ingredients = ingredients;
-
+                              
                               console.log(form_data_obj);
+                              
+                              
                          
                                                       
                         }
