@@ -25,12 +25,19 @@ clicked_id,
 set_clicked_id ,
 
 handle_recipe_click ,
+
+for_add_recipe , 
+set_for_add_recipe ,
+
+handle_add_recipe_click ,
 }) {
   
 
 
               const [inputed_recipe_name, set_inputed_recipe_name] = useState("");
               const check_for_same_search = useRef("");
+
+              
               
 
               //__________________________________________________________________________________________
@@ -94,6 +101,9 @@ handle_recipe_click ,
 
 
 
+
+
+
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
   return (
@@ -124,7 +134,8 @@ handle_recipe_click ,
       </div>
 
 
-      <div className="div_add_recipes">
+      <div className="div_add_recipes"  onClick={(e) => handle_add_recipe_click(e)}
+      > 
         <img className="img_add_recipe_icon" src="add_recipe_icon_2.png" alt="img" />
         <p className="text_add_recipe">ADD RECIPE</p>
       </div>

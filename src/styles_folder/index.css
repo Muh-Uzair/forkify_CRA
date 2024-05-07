@@ -32,6 +32,7 @@ body {
 
 
 
+
 .main_box{
 
     
@@ -50,6 +51,8 @@ body {
     grid-template-rows: 93px 1fr;
 
     border-radius: 8px;
+
+    z-index: 20000;
 
     
 }

@@ -43,6 +43,7 @@ export default function App() {
               }
               );
               const [clicked_id, set_clicked_id] = useState("");
+              const [for_add_recipe , set_for_add_recipe] = useState(false) ;
 
               
               
@@ -122,6 +123,14 @@ export default function App() {
     
     
                         }
+                 //_________________________________________________________________________________
+                        function handle_add_recipe_click(event_info_object){
+                          set_for_add_recipe(true);
+                        }
+                //_________________________________________________________________________________
+                        function handle_btn_cross_click(event_info_object) {
+                          set_for_add_recipe(false)
+                        }
               
         
 
@@ -159,6 +168,11 @@ export default function App() {
               set_clicked_id={set_clicked_id}
 
               handle_recipe_click={handle_recipe_click}
+
+              for_add_recipe={for_add_recipe}
+              set_for_add_recipe={set_for_add_recipe}
+
+              handle_add_recipe_click={handle_add_recipe_click}
 
               >
 
@@ -235,6 +249,73 @@ export default function App() {
   
 
         </section>
+
+      </main>
+
+      <main className="main_recipe_upload_bigger"
+      style={for_add_recipe ? {opacity:"1" , zIndex:"21000" , transition: "all ease 0.3s"}: {opacity:"1" , zIndex:"21000"}}
+      >
+
+        <div className="div_recipe_upload">
+
+          <button className="btn_cross" onClick={(e) => handle_btn_cross_click(e)}>
+            <img className="img_cross" src="cross_icon_2.png" alt="img"/>
+          </button>
+
+          
+          
+
+          <form>
+
+          <section className="section_recipe_data">
+
+            <label>Title</label>
+            <input type="text"/> <br/>
+
+            <label>URL</label>
+            <input type="text"/> <br/>
+      
+            <label>Image URL</label>
+            <input type="text"/>  <br/>
+
+            <label>Publisher</label>
+            <input type="text"/> <br/>
+
+            <label>Prep Time</label>
+            <input type="text"/> <br/>
+
+          </section>
+
+          <section className="section_recipe_ingredients">
+
+            <label >Ingredient 1</label>
+            <input type="text"/> <br/>
+
+            <label>Ingredient 2</label>
+            <input type="text"/> <br/>
+
+            <label>Ingredient 3</label>
+            <input type="text"/> <br/>
+
+            <label>Ingredient 4</label>
+            <input type="text"/> <br/>   
+
+            <label>Ingredient 5</label>
+            <input type="text"/> <br/>
+
+            <label>Ingredient 6</label>
+            <input type="text"/> <br/>
+
+          </section>
+
+             
+
+
+          </form>
+
+        </div>
+
+        
 
       </main>
 
