@@ -59,6 +59,69 @@ export default function App() {
 
                         localStorage.setItem("bookmarked_recipe_arr_detail" ,  JSON.stringify(bookmarks_arr_detail)) ;
                         },[bookmarks_arr_detail])
+
+                        function check_for_bookmarked_recipe_existance_function(recieved_recipe) {
+                          // console.log(recieved_recipe)
+    
+                          let flag = false;
+    
+                          for (let i = 0; i < bookmarks_arr.length; i++) {
+                            if (bookmarks_arr[i] === recieved_recipe.id) {
+                              flag = true;
+                              return flag;
+                            }
+                          }
+    
+                          return flag;
+                        }
+                //_________________________________________________________________________________
+                        function handle_recipe_click(event_info_object, val) {
+    
+                          if (recipe_details.id === val.id) return;
+    
+    
+                          if (check_for_bookmarked_recipe_existance_function(val) === true) {
+    
+                            set_check_book_mark_right_clicked(true);
+                          }
+                          else if (check_for_bookmarked_recipe_existance_function(val) === false) {
+    
+                            set_check_book_mark_right_clicked(false);
+                          }
+    
+                          set_recipe_clicked(true);
+                          set_recipe_object_to_show(val);
+                          set_clicked_id(val.id);
+                          fetch_recipe_details_function(val.id);
+    
+                          
+    
+                        }
+                //_________________________________________________________________________________
+                        async function fetch_recipe_details_function(recieved_recipe_id) {
+    
+                          try {
+    
+                            set_is_loading_right(true);
+                            const respose = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes/${recieved_recipe_id}?key=${API_KEY}`);
+                            const data = await respose.json();
+    
+                            // console.log(data.data.recipe) ;
+                            set_recipe_details(data.data.recipe);
+    
+                            set_is_loading_right(false);
+    
+                          }
+                          catch (err) {
+    
+                            console.log(err);
+                          }
+                          finally {
+                          }
+    
+    
+    
+                        }
               
         
 
@@ -94,6 +157,8 @@ export default function App() {
 
               clicked_id={clicked_id}
               set_clicked_id={set_clicked_id}
+
+              handle_recipe_click={handle_recipe_click}
 
               >
 
@@ -136,6 +201,9 @@ export default function App() {
 
               clicked_id={clicked_id}
               set_clicked_id={set_clicked_id}
+
+              handle_recipe_click={handle_recipe_click}
+              
 
               
 

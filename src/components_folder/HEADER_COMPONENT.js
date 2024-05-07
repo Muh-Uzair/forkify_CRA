@@ -23,6 +23,8 @@ set_bookmarks_arr_detail ,
 
 clicked_id,
 set_clicked_id ,
+
+handle_recipe_click ,
 }) {
   
 
@@ -169,9 +171,9 @@ set_clicked_id ,
               {bookmarks_arr_detail &&
 
               <ul className="ul_recipe_list">
-                  {bookmarks_arr_detail.map(val => (
-                    <li key={val.id}
-                      
+                  {bookmarks_arr_detail.map((val,i) => (
+                    <li key={i}
+                      onClick={(e) => handle_recipe_click(e, val)}                      
                       style={clicked_id === val.id ? { backgroundColor: "#ffa43b2a" } : {}}
                     >
 
