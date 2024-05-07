@@ -14,13 +14,14 @@ recipe_details, set_recipe_details,
 is_loading_right, set_is_loading_right, 
 bookmarks_arr, set_bookmarks_arr, 
 check_book_mark_right_clicked, set_check_book_mark_right_clicked,
+clicked_id , set_clicked_id
 
 }) {
 
 
   const [arr_of_recipes_for_display, set_arr_of_recipes_for_display] = useState([]);
   const last_page = useRef(1);
-  const [clicked_id, set_clicked_id] = useState("");
+ 
 
 
 

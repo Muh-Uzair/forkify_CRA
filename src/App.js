@@ -33,7 +33,18 @@ export default function App() {
                 return val_from_local_storage ;
               }) ;
               const [check_book_mark_right_clicked , set_check_book_mark_right_clicked] = useState(false) ;
-              const [bookmarks_arr_detail , set_bookmarks_arr_detail] = useState([]);
+
+              const [bookmarks_arr_detail , set_bookmarks_arr_detail] = useState(function(){
+                let val_from_local_storage = JSON.parse(localStorage.getItem("bookmarked_recipe_arr_detail"))
+                if(!val_from_local_storage){
+                  val_from_local_storage = [] ;
+                }
+                return val_from_local_storage ;
+              }
+              );
+              const [clicked_id, set_clicked_id] = useState("");
+
+              
               
               
 
@@ -78,6 +89,12 @@ export default function App() {
               check_for_no_results={check_for_no_results}
               set_check_for_no_results={set_check_for_no_results}
 
+              bookmarks_arr_detail={bookmarks_arr_detail}
+              set_bookmarks_arr_detail={set_bookmarks_arr_detail}
+
+              clicked_id={clicked_id}
+              set_clicked_id={set_clicked_id}
+
               >
 
               </HEADER_COMPONENT>
@@ -116,6 +133,9 @@ export default function App() {
 
               check_book_mark_right_clicked={check_book_mark_right_clicked}
               set_check_book_mark_right_clicked={set_check_book_mark_right_clicked}
+
+              clicked_id={clicked_id}
+              set_clicked_id={set_clicked_id}
 
               
 

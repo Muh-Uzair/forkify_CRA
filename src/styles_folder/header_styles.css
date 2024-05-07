@@ -226,8 +226,10 @@
     right: -20px;
 
     width: 350px;
-    height: 400px;
-    background-color: aquamarine;
+    
+    background-color: rgb(249, 245, 243) ;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: 8px;
     opacity: 0;
     visibility: hidden;
 
