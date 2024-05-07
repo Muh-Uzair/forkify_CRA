@@ -300,73 +300,72 @@ export default function App() {
 
         <div className="div_recipe_upload">
 
-          <button className="btn_cross" onClick={(e) => handle_btn_cross_click(e)}>
-            <img className="img_cross" src="cross_icon_2.png" alt="img"/>
-          </button>
+                <button className="btn_cross" onClick={(e) => handle_btn_cross_click(e)}>
+                  <img className="img_cross" src="cross_icon_2.png" alt="img"/>
+                </button>
 
-          
-          
-
-          <form className="form_recipe_upload" ref={form_el} onSubmit={(e) => handle_btn_upload_click_function(e)}>
-
-            
-                <div className="div_label_inputs">
-
-                      {/* <h2 className="h2_heading">RECIPE DATA</h2> */}
-
-                      <label>Title</label>        
-                      <input type="text" required name="title" value={"Karahi"}/>
-
-                      <label>URL</label>          
-                      <input type="text"  required name="url"  value={"https://fatimacooks.net/chicken-karahi-recipe-pictures-tips-authentic/"}/>
-
-                      <label>Image URL</label>    
-                      <input type="text" required name="image_url" value={"https://fatimacooks.net/wp-content/uploads/2020/02/IMG_1872-1152x1536.jpg"}/> 
-
-                      <label>Publisher</label>    
-                      <input type="text" required name="pusblisher" value={"Fatima Cooking"}/>
-
-                      <label>Prep Time</label>    
-                      <input type="text"  required name="prep_time" value={"60 min"}/>
-
-                      <label>Servings</label>     
-                      <input type="text" required name="servings" value={"4"}/>
+                <div className="div_form_headings">
+                  <h3>RECIPE DATA</h3>
+                  <h3>INGREDIENTS</h3>
                 </div>
 
-            
-                <div className="div_label_inputs" >
+        
+                <form className="form_recipe_upload" ref={form_el} onSubmit={(e) => handle_btn_upload_click_function(e)}>
 
-                    {/* <h2 className="h2_heading">INGREDIENTS</h2> */}
+                        
+                      <div className="div_label_inputs" >
 
-                    <label >Ingredient 1</label>
-                    <input type="text"  name="ingredient-1" placeholder="Format: 'Quantity,Unit,Description'" />
+                            <label>Title</label>        
+                            <input type="text" required name="title" />
 
-                    <label>Ingredient 2</label>
-                    <input type="text"  name="ingredient-2" placeholder="Format: 'Quantity,Unit,Description'" />
+                            <label>URL</label>          
+                            <input type="text"  required name="url" />
 
-                    <label>Ingredient 3</label>
-                    <input type="text"   name="ingredient-3" placeholder="Format: 'Quantity,Unit,Description'" />
+                            <label>Image URL</label>    
+                            <input type="text" required name="image_url" /> 
 
-                    <label>Ingredient 4</label>
-                    <input type="text"  name="ingredient-4" placeholder="Format: 'Quantity,Unit,Description'" />   
+                            <label>Publisher</label>    
+                            <input type="text" required name="pusblisher" />
 
-                    <label>Ingredient 5</label>
-                    <input type="text"  name="ingredient-5" placeholder="Format: 'Quantity,Unit,Description'" />
+                            <label>Prep Time</label>    
+                            <input type="number"  required name="prep_time" />
 
-                    <label>Ingredient 6</label>
-                    <input type="text"  name="ingredient-6" placeholder="Format: 'Quantity,Unit,Description'" />
+                            <label>Servings</label>     
+                            <input type="number" required name="servings" />
+                      </div>
 
-                </div>
+                  
+                      <div className="div_label_inputs" >
 
-              
+                          <label >Ingredient 1</label>
+                          <input type="text"  name="ingredient-1" placeholder="Format: 'Quantity,Unit,Description'" />
 
-              <button className="btn_form_submit" type="submit" >
-                <img className="upload_icon" src="upload_icon.png" alt="img" />
-                <p className="text_upload">UPLOAD</p>
-              </button>           
+                          <label>Ingredient 2</label>
+                          <input type="text"  name="ingredient-2" placeholder="Format: 'Quantity,Unit,Description'" />
+
+                          <label>Ingredient 3</label>
+                          <input type="text"   name="ingredient-3" placeholder="Format: 'Quantity,Unit,Description'" />
+
+                          <label>Ingredient 4</label>
+                          <input type="text"  name="ingredient-4" placeholder="Format: 'Quantity,Unit,Description'" />   
+
+                          <label>Ingredient 5</label>
+                          <input type="text"  name="ingredient-5" placeholder="Format: 'Quantity,Unit,Description'" />
+
+                          <label>Ingredient 6</label>
+                          <input type="text"  name="ingredient-6" placeholder="Format: 'Quantity,Unit,Description'" />
+
+                      </div>
+
+                    
+
+                    <button className="btn_form_submit" type="submit" >
+                      <img className="upload_icon" src="upload_icon.png" alt="img" />
+                      <p className="text_upload">UPLOAD</p>
+                    </button>           
 
 
-          </form>
+                </form>
 
         </div>
 
