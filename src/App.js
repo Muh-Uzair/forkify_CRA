@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { RIGHT_COMPONENT } from "./components_folder/RIGHT_COMPONENT";
 import { HEADER_COMPONENT } from "./components_folder/HEADER_COMPONENT";
 import { LEFT_COMPONENT } from "./components_folder/LEFT_COMPONENT";
@@ -44,6 +44,10 @@ export default function App() {
               );
               const [clicked_id, set_clicked_id] = useState("");
               const [for_add_recipe , set_for_add_recipe] = useState(false) ;
+              const form_el = useRef(null) ;
+
+
+
 
               
               
@@ -131,7 +135,45 @@ export default function App() {
                         function handle_btn_cross_click(event_info_object) {
                           set_for_add_recipe(false)
                         }
-              
+                //_________________________________________________________________________________
+                        function handle_btn_upload_click_function(event_info_object){
+
+                          event_info_object.preventDefault() ;
+
+                          
+                              // 1 : got array of arrays from form 
+                              const form_data = [...new FormData(form_el.current)] ;
+
+                              // const from_data_obj = Object.fromEntries(from_data) ;
+
+                              // 2: 
+                              const form_data_obj = {};
+                              let ingredients = []; // Initialize ingredients array
+
+                              form_data.forEach(([key, value]) => {
+                                  if (key.startsWith("ingredient") && value.trim() !== "") {
+                                      // Split the ingredient value by comma
+                                      const parts = value.split(',');
+                                      let [quantity, unit, description] = parts;
+                                      
+                                      // Trim each part to handle cases like ",,flour"
+                                      quantity = quantity.trim() || null;
+                                      unit = unit.trim() || null;
+                                      description = description.trim();
+                                      
+                                      ingredients.push({ quantity, unit, description });
+                                  } else {
+                                      // For non-ingredient keys or empty ingredient values, directly add them to the form_data_obj
+                                      form_data_obj[key] = value;
+                                  }
+                              });
+
+                              form_data_obj.ingredients = ingredients;
+
+                              console.log(form_data_obj);
+                         
+                                                      
+                        }
         
 
 
@@ -265,66 +307,60 @@ export default function App() {
           
           
 
-          <form className="form_recipe_upload">
+          <form className="form_recipe_upload" ref={form_el} onSubmit={(e) => handle_btn_upload_click_function(e)}>
 
-              <section className="section_recipe_data">
-
-                <h2 className="h2_heading">RECIPE DATA</h2>
-
+            
                 <div className="div_label_inputs">
 
-                      <h3>Title</h3>        
-                      <input type="text"/>
+                      {/* <h2 className="h2_heading">RECIPE DATA</h2> */}
 
-                      <h3>URL</h3>          
-                      <input type="text"/>
+                      <label>Title</label>        
+                      <input type="text" required name="title" value={"Karahi"}/>
 
-                      <h3>Image URL</h3>    
-                      <input type="text"/> 
+                      <label>URL</label>          
+                      <input type="text"  required name="url"  value={"https://fatimacooks.net/chicken-karahi-recipe-pictures-tips-authentic/"}/>
 
-                      <h3>Publisher</h3>    
-                      <input type="text"/>
+                      <label>Image URL</label>    
+                      <input type="text" required name="image_url" value={"https://fatimacooks.net/wp-content/uploads/2020/02/IMG_1872-1152x1536.jpg"}/> 
 
-                      <h3>Prep Time</h3>    
-                      <input type="text"/>
+                      <label>Publisher</label>    
+                      <input type="text" required name="pusblisher" value={"Fatima Cooking"}/>
 
-                      <h3>Servings</h3>     
-                      <input type="text"/>
+                      <label>Prep Time</label>    
+                      <input type="text"  required name="prep_time" value={"60 min"}/>
+
+                      <label>Servings</label>     
+                      <input type="text" required name="servings" value={"4"}/>
                 </div>
 
-
-              </section>
-
-
-              <section className="section_recipe_data indgredients">
-
-                <h2 className="h2_heading">INGREDIENTS</h2>
-
+            
                 <div className="div_label_inputs" >
 
-                    <h3 >Ingredient 1</h3>
-                    <input type="text"/>
+                    {/* <h2 className="h2_heading">INGREDIENTS</h2> */}
 
-                    <h3>Ingredient 2</h3>
-                    <input type="text"/>
+                    <label >Ingredient 1</label>
+                    <input type="text"  name="ingredient-1" placeholder="Format: 'Quantity,Unit,Description'" />
 
-                    <h3>Ingredient 3</h3>
-                    <input type="text"/>
+                    <label>Ingredient 2</label>
+                    <input type="text"  name="ingredient-2" placeholder="Format: 'Quantity,Unit,Description'" />
 
-                    <h3>Ingredient 4</h3>
-                    <input type="text"/>   
+                    <label>Ingredient 3</label>
+                    <input type="text"   name="ingredient-3" placeholder="Format: 'Quantity,Unit,Description'" />
 
-                    <h3>Ingredient 5</h3>
-                    <input type="text"/>
+                    <label>Ingredient 4</label>
+                    <input type="text"  name="ingredient-4" placeholder="Format: 'Quantity,Unit,Description'" />   
 
-                    <h3>Ingredient 6</h3>
-                    <input type="text"/>
+                    <label>Ingredient 5</label>
+                    <input type="text"  name="ingredient-5" placeholder="Format: 'Quantity,Unit,Description'" />
+
+                    <label>Ingredient 6</label>
+                    <input type="text"  name="ingredient-6" placeholder="Format: 'Quantity,Unit,Description'" />
 
                 </div>
 
-              </section>
+              
 
-              <button className="btn_form_submit" type="submit">
+              <button className="btn_form_submit" type="submit" >
                 <img className="upload_icon" src="upload_icon.png" alt="img" />
                 <p className="text_upload">UPLOAD</p>
               </button>           

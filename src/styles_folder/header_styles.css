@@ -208,6 +208,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
+
+
+
+
 .div_recipe_upload form {
 
     position: relative;
@@ -215,7 +220,7 @@
     border-radius: 8px;
     
     display: grid;
-    grid-template-columns: 1fr 1fr ;
+    grid-template-columns:  1fr 1fr ;
     width: 900px;
     
   }
@@ -249,24 +254,9 @@
 }
 
 
-.section_recipe_data{
 
-    background: #e2f8ff00;    
+  
 
-    position: relative;
-
-    font-family: gilroy;
-
-}  
-.div_label_inputs{
-
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%,50%);
-    top: -20px;
-
-    display: flex;
-}
 
 .div_label_inputs{
 
@@ -274,7 +264,7 @@
 
     display: grid;
     grid-template-columns: 60px 250px;
-    grid-template-rows: 30px 30px 30px 30px 30px 30px ;
+    grid-template-rows: 30px 30px 30px 30px 30px 30px 30px;
     column-gap: 60px;
     row-gap: 10px;
 
@@ -299,7 +289,7 @@
     transition: all ease 0.2s;
     
 }
-.div_label_inputs h3{
+.div_label_inputs label{
     text-wrap: nowrap;
     font-family: gilroy;
     font-size: 14px;
