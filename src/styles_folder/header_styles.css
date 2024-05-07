@@ -199,7 +199,7 @@
 
     width: 900px;
     height: 500px;
-    background-color: rgb(238, 238, 238);
+    background-color: rgb(255, 255, 255);
 
     border-radius: 8px;
 
@@ -209,6 +209,8 @@
     grid-template-columns: 1fr 1fr;
 }
 .div_recipe_upload form {
+
+    position: relative;
 
     border-radius: 8px;
     
@@ -236,6 +238,8 @@
     align-items: center;
     cursor: pointer;
 
+    z-index: 23000;
+
 }
 .btn_cross:hover{
     opacity: 0.8;
@@ -244,14 +248,120 @@
     opacity: 0.3;
 }
 
+
 .section_recipe_data{
 
-    background: #e2f8ff00;
+    background: #e2f8ff00;    
+
+    position: relative;
+
+    font-family: gilroy;
+
+}  
+.div_label_inputs{
+
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,50%);
+    top: -20px;
+
+    display: flex;
 }
 
-.section_recipe_ingredients{
+.div_label_inputs{
 
-    background:#ffd1d15c;
+    margin-top: 30px;
+
+    display: grid;
+    grid-template-columns: 60px 250px;
+    grid-template-rows: 30px 30px 30px 30px 30px 30px ;
+    column-gap: 60px;
+    row-gap: 10px;
+
+    transition: all ease 0.3s;
+}
+.div_label_inputs input{
+
+    border-radius: 5px;
+    border: 3px solid rgba(0, 0, 0, 0.092);
+    outline: none;
+
+    font-family: gilroy;
+    font-size: 14px;
+
+    padding-left: 10px;
+    color: rgb(109, 109, 109);
+    transition: all ease 0.2s;
+}
+.div_label_inputs input:focus{
+    border: 3px solid #ffb25ad8;
+    background-color:#ffb25a0f;
+    transition: all ease 0.2s;
+    
+}
+.div_label_inputs h3{
+    text-wrap: nowrap;
+    font-family: gilroy;
+    font-size: 14px;
+    font-weight: 300;
+    margin: 0px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+    color: rgb(109, 109, 109);
+}
+
+.h2_heading{
+    
+    margin-left: 40px;
+    font-family: gilroy;
+    margin-top: 50px;
+    color: rgba(0, 0, 0, 0.497);
+}
+
+.btn_form_submit{
+
+    position: absolute;
+   left: 50%;
+   transform: translate(-50%);
+   bottom: 50px;
+    
+
+    width: 160px;
+    height: 50px;
+    border-radius: 50px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+
+    background-image: linear-gradient(to bottom right, #ffb25ad4, #ff7575cf);
+
+    cursor: pointer;
+}
+.btn_form_submit:hover{
+
+    background-image: linear-gradient(to bottom right, #ffb25aa2, #ff7575a0);
+}
+.btn_form_submit:active{
+
+    background-image: linear-gradient(to bottom right, #ffb25ad4, #ff7575cf);
+}
+.upload_icon{
+    width: 20px;
+    height: 20px;
+    margin-bottom: 3px;
+}
+.text_upload{
+    display: inline;
+    margin: 0px;
+    color: rgb(255, 255, 244);
+    margin-left: 5px;
+    font-family: gilroy;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
 }
 
 /* //////////////////////////////////////////////////////////////////////////////////// */

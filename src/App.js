@@ -253,7 +253,7 @@ export default function App() {
       </main>
 
       <main className="main_recipe_upload_bigger"
-      style={for_add_recipe ? {opacity:"1" , zIndex:"21000" , transition: "all ease 0.3s"}: {opacity:"1" , zIndex:"21000"}}
+      style={for_add_recipe ? {opacity:"1" , zIndex:"21000" , transition: "all ease 0.3s"}: {opacity:"0"}}
       >
 
         <div className="div_recipe_upload">
@@ -265,50 +265,69 @@ export default function App() {
           
           
 
-          <form>
+          <form className="form_recipe_upload">
 
-          <section className="section_recipe_data">
+              <section className="section_recipe_data">
 
-            <label>Title</label>
-            <input type="text"/> <br/>
+                <h2 className="h2_heading">RECIPE DATA</h2>
 
-            <label>URL</label>
-            <input type="text"/> <br/>
-      
-            <label>Image URL</label>
-            <input type="text"/>  <br/>
+                <div className="div_label_inputs">
 
-            <label>Publisher</label>
-            <input type="text"/> <br/>
+                      <h3>Title</h3>        
+                      <input type="text"/>
 
-            <label>Prep Time</label>
-            <input type="text"/> <br/>
+                      <h3>URL</h3>          
+                      <input type="text"/>
 
-          </section>
+                      <h3>Image URL</h3>    
+                      <input type="text"/> 
 
-          <section className="section_recipe_ingredients">
+                      <h3>Publisher</h3>    
+                      <input type="text"/>
 
-            <label >Ingredient 1</label>
-            <input type="text"/> <br/>
+                      <h3>Prep Time</h3>    
+                      <input type="text"/>
 
-            <label>Ingredient 2</label>
-            <input type="text"/> <br/>
+                      <h3>Servings</h3>     
+                      <input type="text"/>
+                </div>
 
-            <label>Ingredient 3</label>
-            <input type="text"/> <br/>
 
-            <label>Ingredient 4</label>
-            <input type="text"/> <br/>   
+              </section>
 
-            <label>Ingredient 5</label>
-            <input type="text"/> <br/>
 
-            <label>Ingredient 6</label>
-            <input type="text"/> <br/>
+              <section className="section_recipe_data indgredients">
 
-          </section>
+                <h2 className="h2_heading">INGREDIENTS</h2>
 
-             
+                <div className="div_label_inputs" >
+
+                    <h3 >Ingredient 1</h3>
+                    <input type="text"/>
+
+                    <h3>Ingredient 2</h3>
+                    <input type="text"/>
+
+                    <h3>Ingredient 3</h3>
+                    <input type="text"/>
+
+                    <h3>Ingredient 4</h3>
+                    <input type="text"/>   
+
+                    <h3>Ingredient 5</h3>
+                    <input type="text"/>
+
+                    <h3>Ingredient 6</h3>
+                    <input type="text"/>
+
+                </div>
+
+              </section>
+
+              <button className="btn_form_submit" type="submit">
+                <img className="upload_icon" src="upload_icon.png" alt="img" />
+                <p className="text_upload">UPLOAD</p>
+              </button>           
 
 
           </form>
