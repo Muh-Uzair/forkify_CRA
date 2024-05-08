@@ -377,6 +377,8 @@ export default function App() {
 
       </main>
 
+
+
       <main className="main_recipe_upload_bigger"
       style={for_add_recipe ? {opacity:"1" , zIndex:"21000" , transition: "all ease 0.3s"}: {opacity:"0"}}
       >
