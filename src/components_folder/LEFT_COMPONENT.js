@@ -99,8 +99,23 @@ handle_recipe_click ,
 
                     <p className="text_recipe_title">{val.title}</p>
                     <p className="text_channel_name">{val.publisher}</p>
+                    
 
                   </div>
+
+                  <div className="div_my_recipe">
+                      
+                      
+                       {val.key === API_KEY 
+                       ?
+                       <div className="div_person_icon">
+                          <img className="img_person_icon" src="person_icon.png" alt="img"/>
+                       </div> 
+                        : 
+                        <></>
+                        }
+                  </div>
+                  
 
 
                 </li>

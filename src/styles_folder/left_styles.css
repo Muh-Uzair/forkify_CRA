@@ -44,7 +44,7 @@
     z-index: 1000;
 
     display: grid;
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 100px 1fr 50px;
 
     padding-right: 10px;
 
@@ -107,8 +107,24 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+.div_my_recipe{
+    display: flex;
+    align-items: center;
+}
+.div_person_icon{
+    width: 25px;
+    height: 25px;
+    background-color: rgb(226, 226, 226);
+    border-radius: 50px;
 
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img_person_icon{
+    width: 18px;
+    height: 18px;
+}
 /* //////////////////////////////////////////////////////////////////////////////////// */
 
 

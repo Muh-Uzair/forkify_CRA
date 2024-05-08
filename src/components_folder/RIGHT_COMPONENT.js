@@ -5,6 +5,10 @@
 /////////////////////////////////////////////////////////////////////////////////////
 
 import { useEffect, useState } from "react";
+import { API_KEY } from "../App";
+
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 export function RIGHT_COMPONENT({
@@ -14,7 +18,8 @@ is_loading_right, set_is_loading_right,
 recipe_details, set_recipe_details, 
 check_book_mark_right_clicked, set_check_book_mark_right_clicked, 
 bookmarks_arr, set_bookmarks_arr,
-bookmarks_arr_detail, set_bookmarks_arr_detail
+bookmarks_arr_detail, set_bookmarks_arr_detail ,
+API_KEY ,
 
 }) {
             const [servings_number , set_servings_number] = useState(0)
@@ -203,6 +208,18 @@ bookmarks_arr_detail, set_bookmarks_arr_detail
                 </button>
 
               </div>
+
+              {recipe_details.key === API_KEY 
+              ?
+              <div className="div_person_icon_right">
+
+                <div className="div_person_icon_right_inner">
+                  <img className="img_person_icon_right" src="person_icon.png" alt="img"/>
+                </div>
+
+              </div> 
+              : 
+              <></>}
 
             </div>
 

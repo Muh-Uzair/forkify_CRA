@@ -172,6 +172,19 @@ handle_add_recipe_click ,
 
                             </div>
 
+                            <div className="div_my_recipe">
+                      
+                      
+                                {val.key === API_KEY 
+                                ?
+                                <div className="div_person_icon">
+                                    <img className="img_person_icon" src="person_icon.png" alt="img"/>
+                                </div> 
+                                  : 
+                                  <></>
+                                  }
+                            </div>
+
 
                           </li>
                         ))}

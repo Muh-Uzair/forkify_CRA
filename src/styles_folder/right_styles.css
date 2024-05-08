@@ -185,6 +185,29 @@
     height: 20px;
 }
 
+.div_person_icon_right{
+    position: absolute;
+    left: 440px;
+    top: 50%;
+    transform: translateY(-50%);
+    
+}
+
+.div_person_icon_right_inner{
+    width: 40px;
+    height: 40px;
+    background-color: rgb(227, 227, 227);
+    border-radius: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img_person_icon_right{
+    width: 30px;
+    height: 30px;
+}
+
 /* __________________ */
 
 
