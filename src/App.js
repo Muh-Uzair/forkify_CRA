@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { RIGHT_COMPONENT } from "./components_folder/RIGHT_COMPONENT";
 import { HEADER_COMPONENT } from "./components_folder/HEADER_COMPONENT";
 import { LEFT_COMPONENT } from "./components_folder/LEFT_COMPONENT";
+import { wait } from "@testing-library/user-event/dist/utils";
 
 
 
@@ -136,6 +137,39 @@ export default function App() {
                           set_for_add_recipe(false)
                         }
                 //_________________________________________________________________________________
+                        async function send_recipe_to_api_function(recieved_recipe_object) {
+
+                           try{
+
+                            const recipe_recived_again = await fetch(`https://forkify-api.herokuapp.com/api/v2/recipes?key=${API_KEY}`,
+                              {
+                                method:"POST" ,
+                                headers :{
+                                  "Content-Type" : "application/json"
+                                } ,
+                                body: JSON.stringify(recieved_recipe_object),
+                              }
+                            )
+
+                            const data = await recipe_recived_again.json() ;
+                            const our_recipe = data.data.recipe ;
+                            console.log(our_recipe) ;
+
+                            set_bookmarks_arr(bookmarks_arr => [...bookmarks_arr, our_recipe.id]);
+                            set_bookmarks_arr_detail( bookmarks_arr_detail => [...bookmarks_arr_detail , our_recipe])
+
+
+                           }
+                           catch(err) {
+
+                              console.log(err)     
+                            }
+                           finally{
+
+                           }
+
+                        }
+                //_________________________________________________________________________________
                         function handle_btn_upload_click_function(event_info_object){
 
                           event_info_object.preventDefault() ;
@@ -144,13 +178,13 @@ export default function App() {
                               // 1 : got array of arrays from form 
                               const form_data = [...new FormData(form_el.current)] ;
 
-                              // const from_data_obj = Object.fromEntries(from_data) ;
-
+                              // 2 : preparing the object to upload
                               const form_data_obj = {};
                               let ingredients = []; // Initialize ingredients array
                               
                               form_data.forEach(([key, value]) => {
                                   if (key.startsWith("ingredient") && value.trim() !== "") {
+
                                       // Check if the value contains two commas
                                       const commaCount = (value.match(/,/g) || []).length;
                                       if (commaCount !== 2) {
@@ -197,10 +231,9 @@ export default function App() {
                               form_data_obj.ingredients = ingredients;
                               
                               console.log(form_data_obj);
-                              
-                              
-                         
-                                                      
+
+                              send_recipe_to_api_function(form_data_obj)
+                                                           
                         }
         
 
@@ -347,16 +380,16 @@ export default function App() {
                             <input type="text" required name="title" />
 
                             <label>URL</label>          
-                            <input type="text"  required name="url" />
+                            <input type="text"  required name="source_url" />
 
                             <label>Image URL</label>    
                             <input type="text" required name="image_url" /> 
 
                             <label>Publisher</label>    
-                            <input type="text" required name="pusblisher" />
+                            <input type="text" required name="publisher" />
 
                             <label>Prep Time</label>    
-                            <input type="number"  required name="prep_time" />
+                            <input type="number"  required name="cooking_time" />
 
                             <label>Servings</label>     
                             <input type="number" required name="servings" />
