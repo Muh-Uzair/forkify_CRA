@@ -491,15 +491,16 @@
 
     transition: all ease 0.5s;
 
+    &:hover,
+    div_add_bookmarks_inner:hover + & {
+        visibility: visible;
+        opacity: 1;
+    }
 }
-.div_bookmark_header_tool_tip{
 
- &:hover,
- div_add_bookmarks_inner:hover + & {
-    visibility: visible;
-    opacity: 1;
-  }
-}
+
+
+ 
 .div_no_bookmarks{
     display: flex;
 

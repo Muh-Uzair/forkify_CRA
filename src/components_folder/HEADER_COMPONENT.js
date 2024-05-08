@@ -150,9 +150,11 @@ handle_add_recipe_click ,
             </div>
 
             <div className="div_bookmark_header_tool_tip"
+           
             >
                   
-                {bookmarks_arr_detail.length > 0 ? 
+                {bookmarks_arr_detail.length > 0 
+                ? 
 
                     <ul className="ul_recipe_list">
                         {bookmarks_arr_detail.map((val,i) => (
