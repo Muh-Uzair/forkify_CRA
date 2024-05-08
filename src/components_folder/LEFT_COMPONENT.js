@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { API_KEY } from "../App";
+import {RECIPE_LIST} from "./common"
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////
@@ -84,60 +86,25 @@ handle_recipe_click ,
               <p className="cross_sign">❌</p> <p className="text_sorry_msg">No results</p>
             </>
             :
-            <ul className="ul_recipe_list">
-              {arr_of_recipes_for_display.map(val => (
-                <li key={val.id}
-                  onClick={(e) => handle_recipe_click(e, val)}
-                  style={clicked_id === val.id ? { backgroundColor: "#ffa43b2a" } : {}}
-                >
-
-                  <div className="div_recipe_img">
-                    <img className="img_recipe" src={val.image_url} alt="img" />
-                  </div>
-
-                  <div className="div_recipe_name_plus_channel">
-
-                    <p className="text_recipe_title">{val.title}</p>
-                    <p className="text_channel_name">{val.publisher}</p>
-                    
-
-                  </div>
-
-                  <div className="div_my_recipe">
-                      
-                      
-                       {val.key === API_KEY 
-                       ?
-                       <div className="div_person_icon">
-                          <img className="img_person_icon" src="person_icon.png" alt="img"/>
-                       </div> 
-                        : 
-                        <></>
-                        }
-                  </div>
-                  
-
-
-                </li>
-              ))}
-            </ul>}
+            <RECIPE_LIST 
+            arr_of_recipes={arr_of_recipes_for_display}
+            handle_recipe_click={handle_recipe_click}
+            clicked_id={clicked_id}
+            />
+        }
+            
 
       </div>
 
       {arr_of_recipes.length ?
-
-        <div className="div_next_prev_btn">
-
-
-          {page_num === 1 ?
-            <div></div> :
-            <button className="btn_back_page page_btn" onClick={(e) => handle_btn_back_click(e)}>&larr; Page <strong>{page_num - 1}</strong></button>}
-          {page_num === last_page.current ? <div></div> :
-            <button className="btn_forward_page page_btn" onClick={(e) => handle_btn_forward_click(e)}>Page <strong>{page_num + 1}</strong> &rarr;</button>}
+      <NEXT_PREVIOUS_BUTTONS 
+      page_num={page_num}
+      handle_btn_back_click={handle_btn_back_click}
+      last_page={last_page}
+      handle_btn_forward_click={handle_btn_forward_click}
+      />
 
 
-
-        </div>
         :
         <></>}
 
@@ -148,4 +115,77 @@ handle_recipe_click ,
 //-------------------------------------------------------------------------------------------------
 
 
+}
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+// function RECIPE_LIST({
+// arr_of_recipes_for_display ,
+// handle_recipe_click ,
+// clicked_id ,
+
+// }){
+
+
+//   return(
+
+//     <ul className="ul_recipe_list">
+//               {arr_of_recipes_for_display.map(val => (
+//                 <li key={val.id}
+//                   onClick={(e) => handle_recipe_click(e, val)}
+//                   style={clicked_id === val.id ? { backgroundColor: "#ffa43b2a" } : {}}
+//                 >
+
+//                         <div className="div_recipe_img">
+//                           <img className="img_recipe" src={val.image_url} alt="img" />
+//                         </div>
+
+//                         <div className="div_recipe_name_plus_channel">
+
+//                                 <p className="text_recipe_title">{val.title}</p>
+//                                 <p className="text_channel_name">{val.publisher}</p>
+                                
+
+//                         </div>
+
+//                         <div className="div_my_recipe">
+                                                              
+//                                 {val.key === API_KEY 
+//                                 ?
+//                                 <div className="div_person_icon">
+//                                     <img className="img_person_icon" src="person_icon.png" alt="img"/>
+//                                 </div> 
+//                                   : 
+//                                   <></>
+//                                   }
+//                         </div>
+                  
+
+//                 </li>
+//               ))}
+//     </ul>
+
+//   )
+
+// }
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+function NEXT_PREVIOUS_BUTTONS({
+page_num , handle_btn_back_click ,
+last_page , handle_btn_forward_click ,
+}){
+
+  return(
+        <div className="div_next_prev_btn">
+
+              {page_num === 1 ?
+                <div></div> :
+                <button className="btn_back_page page_btn" onClick={(e) => handle_btn_back_click(e)}>&larr; Page <strong>{page_num - 1}</strong></button>}
+              {page_num === last_page.current ? <div></div> :
+                <button className="btn_forward_page page_btn" onClick={(e) => handle_btn_forward_click(e)}>Page <strong>{page_num + 1}</strong> &rarr;</button>}
+
+        </div>
+  )
 }

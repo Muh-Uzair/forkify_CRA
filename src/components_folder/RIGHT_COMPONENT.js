@@ -29,16 +29,6 @@ API_KEY ,
 
             const [initial_quantity , set_initial_quantity] = useState([]) ;
 
-            
-
-            
-            
-            
-
-            
-
-            
-
 
             //__________________________________________________________________________________
                     function check_for_bookmarked_recipe_existance_function() {
@@ -141,13 +131,6 @@ API_KEY ,
 
             
 
-
-
-
-
-
-
-
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
   return (
@@ -167,64 +150,125 @@ API_KEY ,
           ?
           <div className="div_show_recipe_detials">
 
-            <div className="div_img_big_recipe">
+            <IMG_BIG_RECIPE recipe_details={recipe_details} /> 
+
+            <TIME_SERVING_BOOKMARK 
+            recipe_details={recipe_details}
+            total_cooking_time={total_cooking_time} 
+            servings_number={servings_number}
+            book_mark_right_clicked_function={book_mark_right_clicked_function}
+            btn_plus_clicked={btn_plus_clicked}
+            btn_minus_clicked={btn_minus_clicked}
+            check_book_mark_right_clicked={check_book_mark_right_clicked}
+
+            />    
+
+            <RECIPE_INGREDIENTS recipe_details={recipe_details} />    
+
+            <HOW_TO_COOK recipe_details={recipe_details} />         
+            
+
+
+
+
+          </div>
+          :
+          <></>}
+
+    </section>
+  );
+//-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
+
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+function IMG_BIG_RECIPE({recipe_details}) {
+
+  return(
+    <div className="div_img_big_recipe">
               <img className="img_big_recipe" src={recipe_details.image_url} alt="img" />
-            </div>
+    </div>
+  )
+
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+function TIME_SERVING_BOOKMARK({
+recipe_details , total_cooking_time , 
+servings_number , book_mark_right_clicked_function, 
+btn_plus_clicked, btn_minus_clicked ,
+check_book_mark_right_clicked ,
+}){
+
+  return(
+
+    <div className="div_time_plus_serving_plus_minus">
+
+    <div className="div_time">
+      <img className="clock_img" src="clock_icon.png" alt="img" />
+      <p className="text_time"><strong>{total_cooking_time ? total_cooking_time : recipe_details.cooking_time}</strong> MINUTES</p>
+
+    </div>
+
+    <div className="div_servings">
+
+      <img className="img_servings" src="servings_icon.png" alt="img" />
+
+      <p className="text_servings"><strong>{servings_number ? servings_number : recipe_details.servings}</strong> SERVINGS</p>
+
+      <button className="btn_plus" onClick={(e) => btn_plus_clicked(e)}>
+        <img className="img_plus" src="plus_icon.png" alt="img" />
+      </button>
+
+      <button className="btn_minus" onClick={(e) => btn_minus_clicked(e)}>
+        <img className="img_minus" src="minus_icon.png" alt="img" />
+      </button>
 
 
-            <div className="div_time_plus_serving_plus_minus">
+    </div>
 
-              <div className="div_time">
-                <img className="clock_img" src="clock_icon.png" alt="img" />
-                <p className="text_time"><strong>{total_cooking_time ? total_cooking_time : recipe_details.cooking_time}</strong> MINUTES</p>
+    <div className="div_btn_bookmark_right">
 
-              </div>
+      <button className="btn_bookmark_right" onClick={(e) => book_mark_right_clicked_function(e)}>
 
-              <div className="div_servings">
+        {check_book_mark_right_clicked ?
+          <img className="img_bookmark_right" src="bookmark_icon_right.png" alt="img" />
+          :
+          <img className="img_bookmark_right" src="bookmark_icon_right_2.png" alt="img" />}
+      </button>
 
-                <img className="img_servings" src="servings_icon.png" alt="img" />
+    </div>
 
-                <p className="text_servings"><strong>{servings_number ? servings_number : recipe_details.servings}</strong> SERVINGS</p>
+    {recipe_details.key === API_KEY 
+    ?
+    <div className="div_person_icon_right">
 
-                <button className="btn_plus" onClick={(e) => btn_plus_clicked(e)}>
-                  <img className="img_plus" src="plus_icon.png" alt="img" />
-                </button>
+      <div className="div_person_icon_right_inner">
+        <img className="img_person_icon_right" src="person_icon.png" alt="img"/>
+      </div>
 
-                <button className="btn_minus" onClick={(e) => btn_minus_clicked(e)}>
-                  <img className="img_minus" src="minus_icon.png" alt="img" />
-                </button>
+    </div> 
+    : 
+    <></>}
 
+</div>
 
-              </div>
+  )
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+function RECIPE_INGREDIENTS({
+recipe_details , 
+}) {
 
-              <div className="div_btn_bookmark_right">
+  return(
 
-                <button className="btn_bookmark_right" onClick={(e) => book_mark_right_clicked_function(e)}>
-
-                  {check_book_mark_right_clicked ?
-                    <img className="img_bookmark_right" src="bookmark_icon_right.png" alt="img" />
-                    :
-                    <img className="img_bookmark_right" src="bookmark_icon_right_2.png" alt="img" />}
-                </button>
-
-              </div>
-
-              {recipe_details.key === API_KEY 
-              ?
-              <div className="div_person_icon_right">
-
-                <div className="div_person_icon_right_inner">
-                  <img className="img_person_icon_right" src="person_icon.png" alt="img"/>
-                </div>
-
-              </div> 
-              : 
-              <></>}
-
-            </div>
-
-
-            <div className="div_recipe_ingredients">
+    <div className="div_recipe_ingredients">
 
               <p className="text_ingrients">RECIPE INGREDIENTS</p>
 
@@ -255,9 +299,19 @@ API_KEY ,
                 </ul>
               </div>
 
-            </div>
+    </div>
 
-            <div className="div_how_to_cook_it">
+  )
+}
+/////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+function HOW_TO_COOK({
+recipe_details ,
+}){
+
+  return(
+
+        <div className="div_how_to_cook_it">
 
               <p className="text_how_to_cook_it">HOW TO COOK IT</p>
               <p className="text_carefully">This recipe was carefully designed and tested by All Recipes. Please check out<br />directions at their website.</p>
@@ -266,18 +320,8 @@ API_KEY ,
                 <button className="btn_directions">DIRECTIONS &rarr;</button>
               </a>
 
-            </div>
+      </div>
 
-
-          </div>
-          :
-          <></>}
-
-    </section>
-  );
-//-------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------------
-
-
+  )
 
 }
