@@ -102,13 +102,16 @@ export default function RECIPE_UPLOAD({
                             body: JSON.stringify(form_data_obj),
                           }
                         )
-                        console.log(recipe_recived_again);
+                        // console.log(recipe_recived_again);
                         if(recipe_recived_again.ok === true) {
                           set_recipe_upload_success(true) ;
                         }
   
                         const data = await recipe_recived_again.json() ;
-                        console.log(data)
+                        // console.log(data)
+                        if(data.status === "fail"){
+                          set_wrong_format_error_msg(data.message); 
+                        }
                         const our_recipe = data.data.recipe ;
                         set_recipe_uploading(false) ;
   
@@ -120,11 +123,11 @@ export default function RECIPE_UPLOAD({
                        catch(err) {
   
                           set_wrong_data_format_error(true) ;
-                        
-                          set_wrong_format_error_msg(err.message);    
+                          // set_wrong_format_error_msg(err.message);    
                         }
                        finally{
-  
+                        set_recipe_uploading(false) ;
+    
                        }
   
                     }
