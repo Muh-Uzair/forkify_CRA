@@ -8,4 +8,4 @@ Forkify
 6) User can also upload their recipe as well by clicking on that add recipe button in the header.
 7) Once recipe is uploaded then that recipe will bookmarked automatically.
 
-Project Link : https://forkify-cra-uzair.netlify.app/
+Project Link : https://forkify-uzair-2-cra.netlify.app/
